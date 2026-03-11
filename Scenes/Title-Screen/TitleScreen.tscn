@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dhbavtswdva6i"]
+
+[ext_resource type="Texture2D" uid="uid://qma4hxijcx8e" path="res://Assets/Title-Screen/BG.png" id="1_55xj0"]
+[ext_resource type="Shader" uid="uid://bxbj4vpbhxlfr" path="res://Scenes/Title-Screen/TitleScreen.gdshader" id="1_f3ad5"]
+[ext_resource type="Shader" uid="uid://60pmrcci7ykk" path="res://Scenes/Title-Screen/TitleScreenSides.gdshader" id="3_3a6jc"]
+[ext_resource type="Texture2D" uid="uid://cx6epewqk54e8" path="res://Assets/Title-Screen/BGSides.png" id="3_aufmo"]
+[ext_resource type="Texture2D" uid="uid://ieeon8w74o2v" path="res://Assets/Title-Screen/TITLE.png" id="5_savwt"]
+[ext_resource type="Script" uid="uid://bjc6aoeduhl5l" path="res://Scripts/Title-Screen/titleanim.gd" id="6_ng5po"]
+[ext_resource type="Texture2D" uid="uid://dh3fyat4xj4hs" path="res://Assets/Title-Screen/FALLINGSprite.png" id="7_l77a4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aufmo"]
+shader = ExtResource("1_f3ad5")
+shader_parameter/speed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a6jc"]
+shader = ExtResource("3_3a6jc")
+shader_parameter/speed = 5.0
+
+[sub_resource type="Animation" id="Animation_q04t2"]
+resource_name = "Falling"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(2, 0, 205, 320), Rect2(203, 0, 205, 320), Rect2(402, 0, 205, 320), Rect2(600, 0, 205, 320)]
+}
+
+[sub_resource type="Animation" id="Animation_stm3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 205, 320)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yes4l"]
+_data = {
+&"Falling": SubResource("Animation_q04t2"),
+&"RESET": SubResource("Animation_stm3v")
+}
+
+[node name="TitleScreen" type="Control" unique_id=1982855036]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FallingBackground" type="TextureRect" parent="." unique_id=1798458447]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_aufmo")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_55xj0")
+stretch_mode = 1
+
+[node name="FallingSides" type="TextureRect" parent="." unique_id=371713822]
+material = SubResource("ShaderMaterial_3a6jc")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_aufmo")
+stretch_mode = 1
+
+[node name="Title" type="Sprite2D" parent="." unique_id=1643183952]
+position = Vector2(646, 260)
+scale = Vector2(0.79444444, 0.79444444)
+texture = ExtResource("5_savwt")
+script = ExtResource("6_ng5po")
+
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=545600086]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationAgent" unique_id=448929115]
+libraries/ = SubResource("AnimationLibrary_yes4l")
+autoplay = &"Falling"
+speed_scale = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=1165200043]
+position = Vector2(638, 400)
+texture = ExtResource("7_l77a4")
+region_enabled = true
+region_rect = Rect2(0, 0, 205, 320)
+
+[node name="StoryModeButton" type="TextureButton" parent="." unique_id=1434896575]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
