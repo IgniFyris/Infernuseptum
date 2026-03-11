@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Infernuseptum"
+run/main_scene="uid://dhbavtswdva6i"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [display]
@@ -29,6 +30,13 @@ folder_colors={
 "res://Assets/Pride/": "orange",
 "res://Assets/Sloth/": "gray",
 "res://Assets/Wrath/": "red",
+"res://Scenes/Envy/": "purple",
+"res://Scenes/Gluttony/": "green",
+"res://Scenes/Greed/": "yellow",
+"res://Scenes/Lust/": "pink",
+"res://Scenes/Pride/": "orange",
+"res://Scenes/Sloth/": "gray",
+"res://Scenes/Wrath/": "red",
 "res://Scripts/Envy/": "purple",
 "res://Scripts/Gluttony/": "green",
 "res://Scripts/Greed/": "yellow",
