@@ -2,6 +2,7 @@ extends TextureButton
 
 @onready var EndlessModeButton = get_parent().get_node("EndlessModeButton")
 @onready var TitleText = get_parent().get_node("Title")
+@onready var McFalling = get_parent().get_node("AnimationAgent")
 @onready var ComingSoon = get_parent().get_node("ComingSoon")
 
 @export var animation_player : AnimationPlayer
@@ -32,6 +33,7 @@ func _on_story_mode_button_pressed():
 	
 func title_fall():
 	animation_player.play("Fall_Anim")
+	create_tween().tween_property(McFalling, "modulate:a", 0.0, 1.0)
 	create_tween().tween_property(TitleText, "modulate:a", 0.0, 1.0)
 	
 	SceneLoader.load_scene(initial_scene)

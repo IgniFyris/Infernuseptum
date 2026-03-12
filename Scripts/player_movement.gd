@@ -1,30 +1,34 @@
 extends CharacterBody2D
 
 @onready var CoyoteTimer = $CoyoteTimer
+@onready var JumpBufferTimer = $JumpBufferTimer
+
+@onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+@onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+@onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 @export var speed = 10.0
-@export var jump_power = 10
+@export var jump_height : float
+@export var jump_time_to_peak : float
+@export var jump_time_to_descent : float
 
 var speed_multipilier = 30
-var jump_multiplier = -30
 var direction = 0
-var gravity = 700
 
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
+	
 
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+func _physics_process(delta):
+	
+	velocity.y += gravityget() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
-		$JumpBufferTimer.start()
+		JumpBufferTimer.start()
 		
-	if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not $JumpBufferTimer.is_stopped():
-		velocity.y = jump_power * jump_multiplier
+	if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not JumpBufferTimer.is_stopped():
+		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
 	direction = Input.get_axis("move_left", "move_right")
@@ -39,3 +43,6 @@ func _physics_process(delta: float) -> void:
 	
 	if was_on_floor and not is_on_floor():
 		CoyoteTimer.start()
+		
+func gravityget() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity
