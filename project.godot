@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Infernuseptum"
-run/main_scene="uid://dhbavtswdva6i"
+run/main_scene="uid://csatpp4qa0llo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[autoload]
+
+SceneLoader="*uid://cxo4edfoog2oe"
 
 [display]
 
@@ -20,6 +24,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [file_customization]
 
