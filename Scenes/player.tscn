@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bb7r4semmxla8"]
+
+[ext_resource type="Texture2D" uid="uid://dmgstvcxmwcml" path="res://Assets/SPlayer.png" id="1_v0iea"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
+radius = 9.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1995535131]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
+
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=1177150967]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationAgent" unique_id=857224207]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=171588951]
+position = Vector2(2, -13)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_v0iea")
+region_enabled = true
+region_rect = Rect2(0, 0, 350.94635, 456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380153600]
+position = Vector2(2, -9)
+shape = SubResource("CapsuleShape2D_f60y1")

@@ -23,7 +23,7 @@ func _on_story_mode_button_pressed():
 	EndlessModeButton.disabled = true
 	var EMB_tween = create_tween().tween_property(EndlessModeButton, "modulate:a", 0.0, 1.0)
 	var SMB_tween = create_tween().tween_property(self, "modulate:a", 0.0, 1.0)
-	var ComingSoonTween = create_tween().tween_property(ComingSoon, "modulate:a", 0.0, 1.0)
+	create_tween().tween_property(ComingSoon, "modulate:a", 0.0, 1.0)
 	
 	@warning_ignore("standalone_expression")
 	await EMB_tween.finished && SMB_tween.finished
