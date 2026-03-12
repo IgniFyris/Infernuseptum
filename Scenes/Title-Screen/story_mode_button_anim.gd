@@ -2,11 +2,12 @@ extends TextureButton
 
 @onready var EndlessModeButton = get_parent().get_node("EndlessModeButton")
 @onready var TitleText = get_parent().get_node("Title")
+@onready var McFalling = get_parent().get_node("AnimationAgent")
 @onready var ComingSoon = get_parent().get_node("ComingSoon")
 
 @export var animation_player : AnimationPlayer
 @export var initial_scene: StringName = &""
-
+	
 var frequency = 2.0
 var amplitude = 10.0
 var time = 0.0
@@ -23,7 +24,7 @@ func _on_story_mode_button_pressed():
 	EndlessModeButton.disabled = true
 	var EMB_tween = create_tween().tween_property(EndlessModeButton, "modulate:a", 0.0, 1.0)
 	var SMB_tween = create_tween().tween_property(self, "modulate:a", 0.0, 1.0)
-	var ComingSoonTween = create_tween().tween_property(ComingSoon, "modulate:a", 0.0, 1.0)
+	create_tween().tween_property(ComingSoon, "modulate:a", 0.0, 1.0)
 	
 	@warning_ignore("standalone_expression")
 	await EMB_tween.finished && SMB_tween.finished
@@ -32,6 +33,7 @@ func _on_story_mode_button_pressed():
 	
 func title_fall():
 	animation_player.play("Fall_Anim")
+	create_tween().tween_property(McFalling, "modulate:a", 0.0, 1.0)
 	create_tween().tween_property(TitleText, "modulate:a", 0.0, 1.0)
 	
 	SceneLoader.load_scene(initial_scene)

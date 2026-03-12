@@ -1,3 +1,68 @@
-[gd_scene format=3 uid="uid://dagyj4t8j84c4"]
+[gd_scene format=4 uid="uid://dagyj4t8j84c4"]
+
+[ext_resource type="Texture2D" uid="uid://cqldu0sds5qkk" path="res://Assets/Sloth/SBG.png" id="1_osc3u"]
+[ext_resource type="Texture2D" uid="uid://bn7uv04tu10ap" path="res://Assets/Sloth/STiles.png" id="2_8nc4u"]
+[ext_resource type="PackedScene" uid="uid://cf81rxqxf675i" path="res://Scenes/Sloth/SSlime.tscn" id="4_5el35"]
+[ext_resource type="PackedScene" uid="uid://bb7r4semmxla8" path="res://Scenes/player.tscn" id="4_gvy83"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5el35"]
+texture = ExtResource("2_8nc4u")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_4exqb"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_5el35")
 
 [node name="Sloth" type="Node2D" unique_id=126099089]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=293615612]
+position = Vector2(640, 360)
+texture = ExtResource("1_osc3u")
+
+[node name="LevelBlocks" type="TileMapLayer" parent="." unique_id=2120445955]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAABUAAAACAAEAAAAAABYAAAACAAEAAAABABYAAAACAAEAAAABABUAAAACAAEAAAACABUAAAACAAEAAAADABUAAAACAAEAAAAEABUAAAACAAEAAAAFABUAAAACAAEAAAAGABUAAAACAAEAAAAHABUAAAACAAEAAAAIABUAAAACAAEAAAAJABUAAAACAAEAAAAKABUAAAACAAEAAAALABUAAAACAAEAAAAMABUAAAACAAEAAAANABUAAAACAAEAAAANABYAAAACAAEAAAAMABYAAAACAAEAAAALABYAAAACAAEAAAAKABYAAAACAAEAAAAJABYAAAACAAEAAAAIABYAAAACAAEAAAAHABYAAAACAAEAAAAGABYAAAACAAEAAAAFABYAAAACAAEAAAAEABYAAAACAAEAAAADABYAAAACAAEAAAACABYAAAACAAEAAAAOABUAAAACAAEAAAAOABYAAAACAAEAAAAPABYAAAACAAEAAAAPABUAAAACAAEAAAAGABMAAAACAAEAAAAHABMAAAACAAEAAAAIABMAAAACAAEAAAAJABMAAAACAAEAAAALABIAAAABAAAAAAAMABIAAAABAAAAAAANABIAAAABAAAAAAAOABIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_4exqb")
+
+[node name="Player" parent="." unique_id=1995535131 instance=ExtResource("4_gvy83")]
+position = Vector2(134, 663)
+
+[node name="Slimes" type="Node2D" parent="." unique_id=1738946145]
+
+[node name="SSlime" parent="Slimes" unique_id=422333192 instance=ExtResource("4_5el35")]
+position = Vector2(48, 679)
+
+[node name="SSlime2" parent="Slimes" unique_id=1605128826 instance=ExtResource("4_5el35")]
+position = Vector2(417, 580)
+
+[node name="SSlime3" parent="Slimes" unique_id=789701982 instance=ExtResource("4_5el35")]
+position = Vector2(270, 611)

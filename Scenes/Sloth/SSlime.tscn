@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cf81rxqxf675i"]
+
+[ext_resource type="Texture2D" uid="uid://m2x6k7hn667p" path="res://Assets/Sloth/SSlime.png" id="1_etj8r"]
+[ext_resource type="Script" uid="uid://br41uvkioi61t" path="res://Scenes/Sloth/black_slime_slowness.gd" id="1_u87qf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u87qf"]
+radius = 11.0
+height = 22.0
+
+[node name="Area2D" type="Area2D" unique_id=422333192]
+script = ExtResource("1_u87qf")
+
+[node name="SlimeCollision" type="CollisionShape2D" parent="." unique_id=612685120]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_u87qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1549534088]
+position = Vector2(1.7881393e-07, -9.000001)
+scale = Vector2(0.10227281, 0.102272734)
+texture = ExtResource("1_etj8r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
