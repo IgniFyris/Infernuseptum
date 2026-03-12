@@ -58,5 +58,11 @@ position = Vector2(134, 663)
 
 [node name="Slimes" type="Node2D" parent="." unique_id=1738946145]
 
-[node name="Area2D" parent="Slimes" unique_id=422333192 instance=ExtResource("4_5el35")]
+[node name="SSlime" parent="Slimes" unique_id=422333192 instance=ExtResource("4_5el35")]
 position = Vector2(48, 679)
+
+[node name="SSlime2" parent="Slimes" unique_id=1605128826 instance=ExtResource("4_5el35")]
+position = Vector2(417, 580)
+
+[node name="SSlime3" parent="Slimes" unique_id=789701982 instance=ExtResource("4_5el35")]
+position = Vector2(270, 611)
