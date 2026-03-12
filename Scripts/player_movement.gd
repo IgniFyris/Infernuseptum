@@ -46,3 +46,7 @@ func _physics_process(delta):
 		
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	print("enter")

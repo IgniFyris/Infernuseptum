@@ -7,7 +7,7 @@ extends TextureButton
 
 @export var animation_player : AnimationPlayer
 @export var initial_scene: StringName = &""
-
+	
 var frequency = 2.0
 var amplitude = 10.0
 var time = 0.0

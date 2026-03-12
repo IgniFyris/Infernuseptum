@@ -56,6 +56,8 @@ jump_time_to_descent = 0.19
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
 position = Vector2(2.48, -14.8)
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
 
 [node name="AnimationAgent" type="Node2D" parent="." unique_id=1177150967]
 
