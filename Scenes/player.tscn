@@ -49,6 +49,7 @@ height = 18.0
 [node name="Player" type="CharacterBody2D" unique_id=1995535131]
 scale = Vector2(1.235, 1.235)
 script = ExtResource("1_cvnsp")
+jump_power = 16
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
 position = Vector2(2.48, -14.8)
@@ -72,3 +73,9 @@ position = Vector2(2, -9)
 shape = SubResource("CapsuleShape2D_f60y1")
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=1337709770]
+wait_time = 0.14
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=969293118]
+wait_time = 0.1
+one_shot = true
