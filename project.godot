@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
-SceneLoader="*uid://cxo4edfoog2oe"
+SceneLoader="*uid://bxnpfo6lqd3kf"
 
 [display]
 

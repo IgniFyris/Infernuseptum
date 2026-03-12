@@ -54,12 +54,9 @@ tile_map_data = PackedByteArray("AAAAABUAAAACAAEAAAAAABYAAAACAAEAAAABABYAAAACAAE
 tile_set = SubResource("TileSet_4exqb")
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("4_gvy83")]
-position = Vector2(88, 665)
-speed = 7.0
+position = Vector2(134, 663)
 
 [node name="Slimes" type="Node2D" parent="." unique_id=1738946145]
 
 [node name="Area2D" parent="Slimes" unique_id=422333192 instance=ExtResource("4_5el35")]
-position = Vector2(39, 675)
-
-[connection signal="body_entered" from="Slimes/Area2D" to="Player" method="_on_area_2d_body_entered"]
+position = Vector2(48, 679)

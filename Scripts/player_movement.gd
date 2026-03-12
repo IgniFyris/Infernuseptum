@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
@@ -7,13 +8,14 @@ extends CharacterBody2D
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
-@export var speed = 10.0
-@export var jump_height : float
-@export var jump_time_to_peak : float
-@export var jump_time_to_descent : float
+@export var speed = 7.0
+@export var jump_height : float = 40.0
+@export var jump_time_to_peak : float = 0.25
+@export var jump_time_to_descent : float = 0.19
 
 var speed_multipilier = 30
 var direction = 0
+var is_in_slime = false
 
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
@@ -27,7 +29,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		JumpBufferTimer.start()
 		
-	if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not JumpBufferTimer.is_stopped():
+	if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not JumpBufferTimer.is_stopped() and not is_in_slime:
 		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
@@ -46,7 +48,3 @@ func _physics_process(delta):
 		
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
-
-
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	print("enter")

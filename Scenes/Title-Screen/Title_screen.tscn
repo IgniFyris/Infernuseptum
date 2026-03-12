@@ -161,7 +161,7 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("10_tjgqg")
 animation_player = NodePath("../AnimationAgent/AnimationPlayer")
-initial_scene = &"uid://2khjbmalufxv"
+initial_scene = &"uid://dagyj4t8j84c4"
 
 [node name="EndlessModeButton" type="TextureButton" parent="." unique_id=92803806]
 layout_mode = 1

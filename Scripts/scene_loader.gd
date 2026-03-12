@@ -3,7 +3,7 @@ extends Node
 signal progress_changed(progress)
 signal load_finished
 
-var loading_screen : PackedScene = preload("uid://dagyj4t8j84c4")
+var loading_screen : PackedScene = preload("uid://2khjbmalufxv")
 var loaded_resource : PackedScene
 var scene_path : String
 var progress : Array = []
