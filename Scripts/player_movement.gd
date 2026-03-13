@@ -5,9 +5,11 @@ signal SlothDeath
 
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
+@onready var CamTimer = $CamTimer
+
+#🦥 SLOTH RING 🦥
 @onready var SlothDeathTimer = $SlothDeathTimer
 @onready var SlothBorder = $Camera2D/CanvasLayer/TextureRect
-@onready var CamTimer = $CamTimer
 
 @onready var Camera = $Camera2D
 
@@ -25,6 +27,8 @@ signal SlothDeath
 
 var speed_multipilier = 30
 var direction = 0
+
+#🦥 SLOTH RING 🦥
 var is_in_slime = false
 
 func _ready() -> void:
@@ -49,6 +53,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * speed_multipilier)
 		
+	#SLOTH RING
 	if ((velocity.x != 0.0) or not is_on_floor()) and not SlothDeathTimer.is_stopped():
 		SlothDeathTimer.stop()
 		SlothBorderAnimPlayer.stop()
@@ -66,6 +71,7 @@ func _physics_process(delta):
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
+#🦥 SLOTH RING 🦥
 func _on_sloth_death_timer_timeout() -> void:
 	SlothDeath.emit()
 	SceneLoader.load_scene(death_scene)
