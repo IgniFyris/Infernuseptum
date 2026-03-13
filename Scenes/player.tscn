@@ -90,6 +90,7 @@ scale = Vector2(1.235, 1.235)
 script = ExtResource("1_cvnsp")
 speed = 5.8
 SlothBorderAnimPlayer = NodePath("Camera2D/CanvasLayer/BorderAnim")
+death_scene = &"uid://br7ao02pl5e7w"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
 position = Vector2(2.48, -14.8)
@@ -133,3 +134,9 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=969293118]
 wait_time = 0.1
 one_shot = true
+
+[node name="SlothDeathTimer" type="Timer" parent="." unique_id=544177644]
+wait_time = 7.0
+one_shot = true
+
+[connection signal="timeout" from="SlothDeathTimer" to="." method="_on_sloth_death_timer_timeout"]

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bn7uv04tu10ap" path="res://Assets/Sloth/STiles.png" id="2_8nc4u"]
 [ext_resource type="PackedScene" uid="uid://cf81rxqxf675i" path="res://Scenes/Sloth/SSlime.tscn" id="4_5el35"]
 [ext_resource type="PackedScene" uid="uid://bb7r4semmxla8" path="res://Scenes/player.tscn" id="4_gvy83"]
+[ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="5_4exqb"]
+[ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="6_k6t5v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5el35"]
 texture = ExtResource("2_8nc4u")
@@ -67,3 +69,9 @@ position = Vector2(421, 588)
 
 [node name="SSlime3" parent="Slimes" unique_id=789701982 instance=ExtResource("4_5el35")]
 position = Vector2(272, 620)
+
+[node name="Pre-Death" parent="." unique_id=2145444490 instance=ExtResource("5_4exqb")]
+visible = false
+script = ExtResource("6_k6t5v")
+
+[connection signal="SlothDeath" from="Player" to="Pre-Death" method="_on_player_sloth_death"]

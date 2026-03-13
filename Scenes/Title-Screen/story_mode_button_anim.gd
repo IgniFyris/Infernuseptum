@@ -18,7 +18,6 @@ func _process(delta):
 	rotation_degrees = sin(time * frequency) * -1.3
 	position.x += cos(time * frequency * 2) * 10 * delta 
 
-
 func _on_story_mode_button_pressed():
 	self.disabled = true
 	EndlessModeButton.disabled = true

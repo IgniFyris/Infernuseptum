@@ -9,6 +9,9 @@ var scene_path : String
 var progress : Array = []
 var use_sub_threads : bool = true
 
+var previous_scene_path: String = ""
+var current_scene_path: String = ""
+
 func _ready() -> void:
 	set_process(false)
 	
@@ -39,3 +42,6 @@ func _process(_delta: float) -> void:
 			loaded_resource = ResourceLoader.load_threaded_get(scene_path)
 			get_tree().change_scene_to_packed(loaded_resource)
 			load_finished.emit()
+			
+func get_previous_scene_path() -> String:
+	return scene_path

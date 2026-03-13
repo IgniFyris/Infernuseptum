@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2khjbmalufxv"]
 
-[ext_resource type="Script" path="res://Scripts/loading_screen.gd" id="1_oobaa"]
+[ext_resource type="Script" uid="uid://8o8nhm7nme8t" path="res://Scripts/loading_screen.gd" id="1_oobaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5lxv"]
 bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
@@ -48,6 +48,7 @@ animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="." unique_id=1097107398]
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

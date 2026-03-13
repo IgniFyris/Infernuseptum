@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://br7ao02pl5e7w"]
+
+[ext_resource type="Texture2D" uid="uid://btlgkcny6ncmg" path="res://Assets/SinLogos.png" id="1_cb3vf"]
+[ext_resource type="Script" uid="uid://c6gsuhs4qkhhw" path="res://Scripts/player_death.gd" id="1_t3bym"]
+
+[node name="PlayerDeath" type="CanvasLayer" unique_id=167414854]
+script = ExtResource("1_t3bym")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=236619537]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31727868, 0.31727868, 0.31727856, 1)
+
+[node name="Logos" type="Sprite2D" parent="." unique_id=255643371]
+position = Vector2(640, 184)
+texture = ExtResource("1_cb3vf")
+region_enabled = true
+region_rect = Rect2(0, 0, 326.02972, 313.40167)

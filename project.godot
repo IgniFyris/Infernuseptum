@@ -29,6 +29,7 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
+"res://Assets/Death/": "blue",
 "res://Assets/Envy/": "purple",
 "res://Assets/Gluttony/": "green",
 "res://Assets/Greed/": "yellow",

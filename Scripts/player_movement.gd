@@ -1,10 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
-signal death
+signal SlothDeath
 
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
+@onready var SlothDeathTimer = $SlothDeathTimer
 @onready var SlothBorder = $Camera2D/CanvasLayer/TextureRect
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
@@ -41,15 +42,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * speed_multipilier)
 		
-	if (velocity.x != 0.0) or not is_on_floor():
+	if ((velocity.x != 0.0) or not is_on_floor()) and not SlothDeathTimer.is_stopped():
+		SlothDeathTimer.stop()
 		SlothBorderAnimPlayer.stop()
-		SlothBorder.modulate.a = 0
-	else:
+	elif ((velocity.x == 0.0) or is_on_floor()) and SlothDeathTimer.is_stopped():
+		SlothDeathTimer.start()
 		SlothBorderAnimPlayer.play("fade")
-		
-		await SlothBorderAnimPlayer.animation_finished
-		
-		death.emit()
 		
 	var was_on_floor = is_on_floor()
 
@@ -57,6 +55,10 @@ func _physics_process(delta):
 	
 	if was_on_floor and not is_on_floor():
 		CoyoteTimer.start()
-		
+	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+func _on_sloth_death_timer_timeout() -> void:
+	SlothDeath.emit()
+	SceneLoader.load_scene(death_scene)
