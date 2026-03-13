@@ -2,6 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://btlgkcny6ncmg" path="res://Assets/SinLogos.png" id="1_cb3vf"]
 [ext_resource type="Script" uid="uid://c6gsuhs4qkhhw" path="res://Scripts/player_death.gd" id="1_t3bym"]
+[ext_resource type="Texture2D" uid="uid://cqb1sbbfivc8q" path="res://Assets/Death/ConsumptionText.png" id="3_nf8bt"]
+[ext_resource type="Texture2D" uid="uid://dgoyi60ppbi5j" path="res://Assets/Death/SlothTitle.png" id="4_8yjhk"]
+[ext_resource type="Texture2D" uid="uid://dsyvvxx5qr86n" path="res://Assets/Death/GreedTitle.png" id="5_dwwws"]
+[ext_resource type="Texture2D" uid="uid://dc1vovh41rm7d" path="res://Assets/Death/LustTitle.png" id="6_ybr1n"]
+[ext_resource type="Texture2D" uid="uid://ce4i5h4w80hkg" path="res://Assets/Death/EnvyTitle.png" id="7_pklyu"]
+[ext_resource type="Texture2D" uid="uid://dfqjh6sv4fwmi" path="res://Assets/Death/GluttonyTitle.png" id="8_gwg4y"]
+[ext_resource type="Texture2D" uid="uid://c25fmy7qtneaj" path="res://Assets/Death/WrathTitle.png" id="9_6q0cs"]
+[ext_resource type="Texture2D" uid="uid://s6ibj5ur14fi" path="res://Assets/Death/PrideTitle.png" id="10_34ykv"]
+[ext_resource type="Texture2D" uid="uid://bbkksef8drbhx" path="res://Assets/Death/Restart.png" id="11_8yjhk"]
+[ext_resource type="Texture2D" uid="uid://caplqic4agsa0" path="res://Assets/Death/RestartH.png" id="12_dwwws"]
 
 [node name="PlayerDeath" type="CanvasLayer" unique_id=167414854]
 script = ExtResource("1_t3bym")
@@ -12,10 +22,86 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31727868, 0.31727868, 0.31727856, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Logos" type="Sprite2D" parent="." unique_id=255643371]
-position = Vector2(640, 184)
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+position = Vector2(646, 127)
 texture = ExtResource("1_cb3vf")
 region_enabled = true
 region_rect = Rect2(0, 0, 326.02972, 313.40167)
+
+[node name="ConsumptionText" type="Sprite2D" parent="." unique_id=755645346]
+texture = ExtResource("3_nf8bt")
+centered = false
+
+[node name="SinTitles" type="Node2D" parent="." unique_id=1744853890]
+
+[node name="Sloth" type="Sprite2D" parent="SinTitles" unique_id=802691327]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("4_8yjhk")
+centered = false
+
+[node name="Greed" type="Sprite2D" parent="SinTitles" unique_id=1811769969]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("5_dwwws")
+centered = false
+
+[node name="Lust" type="Sprite2D" parent="SinTitles" unique_id=1242849304]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("6_ybr1n")
+centered = false
+
+[node name="Envy" type="Sprite2D" parent="SinTitles" unique_id=470909596]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("7_pklyu")
+centered = false
+
+[node name="Gluttony" type="Sprite2D" parent="SinTitles" unique_id=505886999]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("8_gwg4y")
+centered = false
+
+[node name="Wrath" type="Sprite2D" parent="SinTitles" unique_id=1999394366]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("9_6q0cs")
+centered = false
+
+[node name="Pride" type="Sprite2D" parent="SinTitles" unique_id=1177938856]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+texture = ExtResource("10_34ykv")
+centered = false
+
+[node name="RestartButton" type="TextureButton" parent="." unique_id=491304058]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -136.0
+offset_right = 226.91858
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("11_8yjhk")
+texture_hover = ExtResource("12_dwwws")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Delay" type="Timer" parent="." unique_id=1488546782]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]

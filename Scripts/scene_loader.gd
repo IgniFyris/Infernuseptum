@@ -5,17 +5,16 @@ signal load_finished
 
 var loading_screen : PackedScene = preload("uid://2khjbmalufxv")
 var loaded_resource : PackedScene
-var scene_path : String
+var scene_path : String               
+var previous_scene_path : String       
 var progress : Array = []
 var use_sub_threads : bool = true
-
-var previous_scene_path: String = ""
-var current_scene_path: String = ""
 
 func _ready() -> void:
 	set_process(false)
 	
 func load_scene(_scene_path: String) -> void:
+	previous_scene_path = scene_path
 	scene_path = _scene_path
 	
 	var new_load_screen = loading_screen.instantiate()
@@ -44,4 +43,4 @@ func _process(_delta: float) -> void:
 			load_finished.emit()
 			
 func get_previous_scene_path() -> String:
-	return scene_path
+	return previous_scene_path 
