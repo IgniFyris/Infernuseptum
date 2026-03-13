@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cqldu0sds5qkk" path="res://Assets/Sloth/SBG.png" id="1_osc3u"]
 [ext_resource type="Texture2D" uid="uid://bn7uv04tu10ap" path="res://Assets/Sloth/STiles.png" id="2_8nc4u"]
 [ext_resource type="PackedScene" uid="uid://cf81rxqxf675i" path="res://Scenes/Sloth/SSlime.tscn" id="4_5el35"]
-[ext_resource type="PackedScene" uid="uid://bb7r4semmxla8" path="res://Scenes/player.tscn" id="4_gvy83"]
+[ext_resource type="PackedScene" uid="uid://bb7r4semmxla8" path="res://Scenes/Sloth/Splayer.tscn" id="4_gvy83"]
 [ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="5_4exqb"]
 [ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="6_k6t5v"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="7_k6t5v"]

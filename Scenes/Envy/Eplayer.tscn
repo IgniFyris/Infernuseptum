@@ -1,46 +1,7 @@
-[gd_scene format=3 uid="uid://bb7r4semmxla8"]
+[gd_scene format=3 uid="uid://bpjpk64ily67n"]
 
-[ext_resource type="Script" uid="uid://belawk0em8772" path="res://Scripts/player_movement.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dmgstvcxmwcml" path="res://Assets/SPlayer.png" id="1_v0iea"]
-[ext_resource type="Texture2D" uid="uid://bgbawj71xgnhr" path="res://Assets/Sloth/SBorder.png" id="2_vgqql"]
-
-[sub_resource type="Animation" id="Animation_fkybt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_x3wgy"]
-resource_name = "fade"
-length = 7.0
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3smsa"]
-_data = {
-&"RESET": SubResource("Animation_fkybt"),
-&"fade": SubResource("Animation_x3wgy")
-}
+[ext_resource type="Script" uid="uid://qmytysewtdkb" path="res://Scripts/Envy/eplayer.gd" id="1_lgllb"]
+[ext_resource type="Texture2D" uid="uid://dmgstvcxmwcml" path="res://Assets/SPlayer.png" id="2_shxod"]
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -85,11 +46,9 @@ _data = {
 radius = 9.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("SlothBorderAnimPlayer")]
+[node name="Player" type="CharacterBody2D" unique_id=1995535131]
 scale = Vector2(1.235, 1.235)
-script = ExtResource("1_cvnsp")
-speed = 5.8
-SlothBorderAnimPlayer = NodePath("Camera2D/CanvasLayer/BorderAnim")
+script = ExtResource("1_lgllb")
 death_scene = &"uid://br7ao02pl5e7w"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
@@ -97,18 +56,6 @@ position = Vector2(2.48, -14.8)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=452189456]
-
-[node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer" unique_id=603002789]
-modulate = Color(1, 1, 1, 0)
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("2_vgqql")
-
-[node name="BorderAnim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=1590427154]
-libraries/ = SubResource("AnimationLibrary_3smsa")
 
 [node name="AnimationAgent" type="Node2D" parent="." unique_id=1177150967]
 
@@ -119,7 +66,7 @@ speed_scale = 2.0
 [node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=171588951]
 position = Vector2(2, -13)
 scale = Vector2(0.08, 0.08)
-texture = ExtResource("1_v0iea")
+texture = ExtResource("2_shxod")
 region_enabled = true
 region_rect = Rect2(0, 0, 350.94635, 456)
 
@@ -135,13 +82,8 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="SlothDeathTimer" type="Timer" parent="." unique_id=544177644]
-wait_time = 7.0
-one_shot = true
-
 [node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="timeout" from="SlothDeathTimer" to="." method="_on_sloth_death_timer_timeout"]
 [connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://cbn0iex3qa3hh"]
+
+[ext_resource type="Script" uid="uid://cc6qmo7gppi2s" path="res://Scripts/Wrath/wplayer.gd" id="1_ve8q2"]
+[ext_resource type="Texture2D" uid="uid://dmgstvcxmwcml" path="res://Assets/SPlayer.png" id="2_rmvfa"]
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 350.94635, 456)]
+}
+
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "walk"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 350.94635, 456), Rect2(405, 0, 350.946, 456), Rect2(825, 0, 350.946, 456), Rect2(0, 0, 350.94635, 456), Rect2(405, 0, 350.946, 456)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkybt"]
+_data = {
+&"RESET": SubResource("Animation_6t5aa"),
+&"walk": SubResource("Animation_vgqql")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
+radius = 9.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1995535131]
+scale = Vector2(1.235, 1.235)
+script = ExtResource("1_ve8q2")
+death_scene = &"uid://br7ao02pl5e7w"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
+position = Vector2(2.48, -14.8)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=1177150967]
+
+[node name="PlayerAnim" type="AnimationPlayer" parent="AnimationAgent" unique_id=857224207]
+libraries/ = SubResource("AnimationLibrary_fkybt")
+speed_scale = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=171588951]
+position = Vector2(2, -13)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_rmvfa")
+region_enabled = true
+region_rect = Rect2(0, 0, 350.94635, 456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380153600]
+position = Vector2(2, -9)
+shape = SubResource("CapsuleShape2D_f60y1")
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=1337709770]
+wait_time = 0.14
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=969293118]
+wait_time = 0.1
+one_shot = true
+
+[node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]

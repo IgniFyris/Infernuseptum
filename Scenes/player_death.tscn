@@ -27,10 +27,11 @@ color = Color(0, 0, 0, 1)
 [node name="Logos" type="Sprite2D" parent="." unique_id=255643371]
 modulate = Color(1, 1, 1, 0)
 z_index = 10
-position = Vector2(646, 127)
+position = Vector2(630, 121)
+scale = Vector2(0.70926505, 0.7092652)
 texture = ExtResource("1_cb3vf")
 region_enabled = true
-region_rect = Rect2(0, 0, 326.02972, 313.40167)
+region_rect = Rect2(800, 0, 326.03, 313.402)
 
 [node name="ConsumptionText" type="Sprite2D" parent="." unique_id=755645346]
 texture = ExtResource("3_nf8bt")
@@ -82,6 +83,7 @@ centered = false
 
 [node name="RestartButton" type="TextureButton" parent="." unique_id=491304058]
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://bb7r4semmxla8"]
+
+[ext_resource type="Script" uid="uid://belawk0em8772" path="res://Scripts/Sloth/Splayer_movement.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dmgstvcxmwcml" path="res://Assets/SPlayer.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://bgbawj71xgnhr" path="res://Assets/Sloth/SBorder.png" id="2_vgqql"]
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+resource_name = "fade"
+length = 7.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t5aa"]
+_data = {
+&"RESET": SubResource("Animation_fkybt"),
+&"fade": SubResource("Animation_x3wgy")
+}
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 350.94635, 456)]
+}
+
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "walk"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 350.94635, 456), Rect2(405, 0, 350.946, 456), Rect2(825, 0, 350.946, 456), Rect2(0, 0, 350.94635, 456), Rect2(405, 0, 350.946, 456)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkybt"]
+_data = {
+&"RESET": SubResource("Animation_6t5aa"),
+&"walk": SubResource("Animation_vgqql")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
+radius = 9.0
+height = 18.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("SlothBorderAnimPlayer")]
+scale = Vector2(1.235, 1.235)
+script = ExtResource("1_cvnsp")
+speed = 5.8
+SlothBorderAnimPlayer = NodePath("Camera2D/CanvasLayer/BorderAnim")
+death_scene = &"uid://br7ao02pl5e7w"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
+position = Vector2(2.48, -14.8)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=876650775]
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer" unique_id=1500692072]
+modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_vgqql")
+metadata/_edit_use_anchors_ = true
+
+[node name="BorderAnim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=1143518263]
+libraries/ = SubResource("AnimationLibrary_6t5aa")
+
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=1177150967]
+
+[node name="PlayerAnim" type="AnimationPlayer" parent="AnimationAgent" unique_id=857224207]
+libraries/ = SubResource("AnimationLibrary_fkybt")
+speed_scale = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=171588951]
+position = Vector2(2, -13)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_v0iea")
+region_enabled = true
+region_rect = Rect2(0, 0, 350.94635, 456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380153600]
+position = Vector2(2, -9)
+shape = SubResource("CapsuleShape2D_f60y1")
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=1337709770]
+wait_time = 0.14
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=969293118]
+wait_time = 0.1
+one_shot = true
+
+[node name="SlothDeathTimer" type="Timer" parent="." unique_id=544177644]
+wait_time = 7.0
+one_shot = true
+
+[node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="SlothDeathTimer" to="." method="_on_sloth_death_timer_timeout"]
+[connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]
