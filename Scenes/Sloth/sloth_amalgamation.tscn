@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://crcko7swbumeg"]
+
+[ext_resource type="Texture2D" uid="uid://71hema337q3y" path="res://Assets/Sloth/SAmalgamation.png" id="1_6cslk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tqbd"]
+size = Vector2(1287, 484)
+
+[node name="SlothAmalgamation" type="Area2D" unique_id=1031993233]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=790963223]
+position = Vector2(641.5, 486)
+shape = SubResource("RectangleShape2D_3tqbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304376156]
+texture = ExtResource("1_6cslk")
+centered = false

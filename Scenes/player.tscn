@@ -139,4 +139,9 @@ one_shot = true
 wait_time = 7.0
 one_shot = true
 
+[node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="SlothDeathTimer" to="." method="_on_sloth_death_timer_timeout"]
+[connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]

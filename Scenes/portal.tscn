@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://blojlmag8ujmm"]
+
+[ext_resource type="Texture2D" uid="uid://cy1tpokb4wdgh" path="res://Assets/SPRITES (OTHERS)_20260313194515 (1).png" id="1_j20fm"]
+[ext_resource type="Script" uid="uid://bro8syh4pt3wo" path="res://Scripts/portal.gd" id="1_oi2tk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi2tk"]
+radius = 14.0
+
+[sub_resource type="Animation" id="Animation_dashy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 48, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_uwyjv"]
+resource_name = "portal_rotation"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 48, 48), Rect2(48, 0, 48, 48), Rect2(99.505, 0, 48, 48), Rect2(152.085, 0, 42, 48), Rect2(199.355, 0, 48, 48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqy4h"]
+_data = {
+&"RESET": SubResource("Animation_dashy"),
+&"portal_rotation": SubResource("Animation_uwyjv")
+}
+
+[node name="Portal" type="Area2D" unique_id=93760495]
+script = ExtResource("1_oi2tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379489993]
+shape = SubResource("CircleShape2D_oi2tk")
+
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=334088880]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=1803715951]
+position = Vector2(-5, -1)
+texture = ExtResource("1_j20fm")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationAgent" unique_id=1452160757]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_cqy4h")
+autoplay = &"portal_rotation"
+speed_scale = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

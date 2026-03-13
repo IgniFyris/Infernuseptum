@@ -7,6 +7,9 @@ signal SlothDeath
 @onready var JumpBufferTimer = $JumpBufferTimer
 @onready var SlothDeathTimer = $SlothDeathTimer
 @onready var SlothBorder = $Camera2D/CanvasLayer/TextureRect
+@onready var CamTimer = $CamTimer
+
+@onready var Camera = $Camera2D
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -23,6 +26,10 @@ signal SlothDeath
 var speed_multipilier = 30
 var direction = 0
 var is_in_slime = false
+
+func _ready() -> void:
+	Camera.enabled = false
+	CamTimer.start()
 
 func _physics_process(delta):
 	
@@ -62,3 +69,6 @@ func gravityget() -> float:
 func _on_sloth_death_timer_timeout() -> void:
 	SlothDeath.emit()
 	SceneLoader.load_scene(death_scene)
+	
+func _on_cam_timer_timeout() -> void:
+	Camera.enabled = true
