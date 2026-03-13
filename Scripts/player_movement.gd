@@ -16,9 +16,6 @@ class_name Player
 var speed_multipilier = 30
 var direction = 0
 var is_in_slime = false
-
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
 	
 
 func _physics_process(delta):
@@ -38,6 +35,9 @@ func _physics_process(delta):
 		velocity.x = direction * speed * speed_multipilier
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * speed_multipilier)
+		
+	if (velocity.x != 0) or (velocity.y < 0):
+		print("staystill")
 		
 	var was_on_floor = is_on_floor()
 
