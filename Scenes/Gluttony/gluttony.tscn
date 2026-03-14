@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dalvxcmnoopkq" path="res://Assets/Gluttony/GLBG.png" id="1_0j6g4"]
 [ext_resource type="Texture2D" uid="uid://duph5cxi5u5i1" path="res://Assets/Gluttony/GLTiles.png" id="2_quo23"]
 [ext_resource type="PackedScene" uid="uid://ddiallxvqi8sd" path="res://Scenes/Gluttony/GLplayer.tscn" id="3_quo23"]
-[ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="3_ys5tm"]
-[ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="4_syk3q"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="5_hxq8n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02bej"]
@@ -57,10 +55,6 @@ tile_set = SubResource("TileSet_tb7xf")
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("3_quo23")]
 position = Vector2(104, 651)
-
-[node name="Pre-Death" parent="." unique_id=2145444490 instance=ExtResource("3_ys5tm")]
-visible = false
-script = ExtResource("4_syk3q")
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("5_hxq8n")]
 position = Vector2(631, 37)

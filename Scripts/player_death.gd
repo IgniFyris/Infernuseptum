@@ -36,17 +36,17 @@ func _ready() -> void:
 func _on_delay_timeout() -> void:
 	if PrevScene == SlothDeath:
 		death_anim(0, 0, 326.0297, 313.4017, SlothTitle, Color("1f1f1fff"))
-	if PrevScene == GreedDeath:
-		death_anim(79.37, 350, 326.0297, 313.4017, GreedTitle, Color("6e6c14ff"))
-	if PrevScene == LustDeath:
+	elif PrevScene == GreedDeath:
+		death_anim(79.37, 350, 326.0297, 313.4017, GreedTitle, Color("84821aff"))
+	elif  PrevScene == LustDeath:
 		death_anim(312.915, 0, 326.0297, 313.4017, LustTitle, Color("61004dff"))
-	if PrevScene == EnvyDeath:
+	elif PrevScene == EnvyDeath:
 		death_anim(454.73, 350, 326.0297, 313.4017, EnvyTitle, Color("4c205dff"))
-	if PrevScene == GluttonyDeath:
+	elif PrevScene == GluttonyDeath:
 		death_anim(626.935, 0, 326.0297, 313.4017, GluttonyTitle, Color("0f442fff"))
-	if PrevScene == WrathDeath:
+	elif PrevScene == WrathDeath:
 		death_anim(800, 350, 326.0297, 313.4017, WrathTitle, Color("59000cff"))
-	if PrevScene == PrideDeath:
+	elif PrevScene == PrideDeath:
 		death_anim(931.36, 0, 326.0297, 313.4017, PrideTitle, Color("9b5b0fff"))
 
 func _on_texture_button_pressed() -> void:

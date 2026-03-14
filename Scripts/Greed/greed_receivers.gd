@@ -32,24 +32,20 @@ func _on_body_exited(body: Node2D) -> void:
 
 func leave_scene() -> void:
 	if self.rotation == 0:
-		print("front")
 		var tw = create_tween().tween_property(self, "position:x", self.position.x - 150, 1)
 		
 		await tw.finished
 		
 		queue_free()
 	if self.rotation_degrees == -180.0:
-		print("back")
 		var tw = create_tween().tween_property(self, "position:x", self.position.x + 150, 1)
 		
 		await tw.finished
 		
 		queue_free()
 	if self.rotation_degrees == 90.0:
-		print("top")
 		var tw = create_tween().tween_property(self, "position:y", self.position.y - 100, 1)
 		
 		await tw.finished
 		
-		queue_free()
 		queue_free()

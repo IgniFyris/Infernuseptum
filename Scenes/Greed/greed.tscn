@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bv7herqgc7fnv"]
 
 [ext_resource type="Texture2D" uid="uid://doqfvc7f2wxlk" path="res://Assets/Greed/GBg1.png" id="1_4n647"]
+[ext_resource type="Script" uid="uid://7mn6y3ypywke" path="res://Scripts/Greed/greedscene.gd" id="1_qba47"]
 [ext_resource type="Texture2D" uid="uid://b3v5653dfv0u2" path="res://Assets/Greed/GTiles.png" id="2_uk3lo"]
 [ext_resource type="Texture2D" uid="uid://erw45gldx8i6" path="res://Assets/Greed/GBg2.png" id="2_wrlwf"]
 [ext_resource type="Texture2D" uid="uid://4equjxi8ym24" path="res://Assets/Greed/GBg3.png" id="3_7y0w3"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="6_4n647"]
 [ext_resource type="PackedScene" uid="uid://bkx73t5f7ximd" path="res://Scenes/Greed/Gplayer.tscn" id="6_uk3lo"]
 [ext_resource type="PackedScene" uid="uid://bkhq0d3r7npv" path="res://Scenes/Greed/coins.tscn" id="6_wacud"]
+[ext_resource type="PackedScene" uid="uid://de8hdk02e4hfh" path="res://Scenes/Greed/g_question.tscn" id="7_3d0pm"]
 [ext_resource type="PackedScene" uid="uid://cgniykeif8jyv" path="res://Scenes/Greed/GShop.tscn" id="11_wrlwf"]
 [ext_resource type="PackedScene" uid="uid://cdecy4yblb7s2" path="res://Scenes/Greed/greed_receivers.tscn" id="12_7y0w3"]
 
@@ -187,6 +189,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wrlwf")
 
 [node name="Greed" type="Node2D" unique_id=126099089]
+script = ExtResource("1_qba47")
 
 [node name="BackgroundAnim" type="Node2D" parent="." unique_id=1990232662]
 
@@ -226,6 +229,7 @@ z_index = 4
 position = Vector2(58, 665.99994)
 
 [node name="Hands" type="Node2D" parent="." unique_id=1738946145]
+visible = false
 
 [node name="GHand" parent="Hands" unique_id=1814927477 instance=ExtResource("4_uk3lo")]
 position = Vector2(1470, 414)
@@ -283,3 +287,16 @@ position = Vector2(638, 37)
 [node name="Shop" parent="." unique_id=1004000159 instance=ExtResource("11_wrlwf")]
 position = Vector2(626, 56)
 scale = Vector2(0.805, 0.805)
+
+[node name="Camera2D" type="Camera2D" parent="Shop" unique_id=2019441870]
+position = Vector2(14.906799, -23.602482)
+scale = Vector2(1.242236, 1.242236)
+enabled = false
+zoom = Vector2(3, 3)
+
+[node name="GQuestion" parent="." unique_id=882030838 instance=ExtResource("7_3d0pm")]
+visible = false
+z_index = 10
+
+[connection signal="PlayerEnteredShop" from="Shop" to="." method="_on_shop_player_entered_shop"]
+[connection signal="PressedRight" from="GQuestion" to="." method="_on_g_question_pressed_right"]

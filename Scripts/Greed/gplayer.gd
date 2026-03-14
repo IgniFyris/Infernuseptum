@@ -27,6 +27,7 @@ var dead = false
 
 var coins = 0
 var is_in_receiver = false
+var cam = false
 
 func _ready() -> void:
 	Camera.enabled = false

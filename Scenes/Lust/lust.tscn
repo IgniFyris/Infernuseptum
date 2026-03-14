@@ -1,8 +1,6 @@
 [gd_scene format=4 uid="uid://c725gkt87eq1a"]
 
 [ext_resource type="Texture2D" uid="uid://bcyg7rims1m1o" path="res://Assets/Lust/LBG.png" id="1_ntoy7"]
-[ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="3_i5sap"]
-[ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="4_jyw1f"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="5_oq2pb"]
 [ext_resource type="PackedScene" uid="uid://dsljjui72iamg" path="res://Scenes/Lust/Lplayer.tscn" id="6_ntoy7"]
 [ext_resource type="Texture2D" uid="uid://r3jjtn6snqtt" path="res://Assets/Lust/LTiles.png" id="6_uanki"]
@@ -59,10 +57,6 @@ tile_set = SubResource("TileSet_pelau")
 position = Vector2(58, 660)
 
 [node name="Succubi" type="Node2D" parent="." unique_id=1738946145]
-
-[node name="Pre-Death" parent="." unique_id=2145444490 instance=ExtResource("3_i5sap")]
-visible = false
-script = ExtResource("4_jyw1f")
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("5_oq2pb")]
 position = Vector2(631, 37)

@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cwr8tjdpa67ph" path="res://Assets/Envy/EBGClosed.png" id="1_6v6x0"]
 [ext_resource type="Texture2D" uid="uid://clnvvwdt6xs7h" path="res://Assets/Envy/EBGOpen.png" id="2_d6pum"]
 [ext_resource type="Texture2D" uid="uid://cn02satmie50v" path="res://Assets/Envy/ETiles.png" id="3_oe1b2"]
-[ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="5_miqgn"]
-[ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="6_m7cyp"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="7_2h657"]
 [ext_resource type="PackedScene" uid="uid://bpjpk64ily67n" path="res://Scenes/Envy/Eplayer.tscn" id="7_6v6x0"]
 
@@ -67,10 +65,6 @@ tile_map_data = PackedByteArray("AADs/woAAAACAAIAAADs/wsAAAACAAIAAADt/woAAAACAAI
 tile_set = SubResource("TileSet_sa1se")
 
 [node name="Questions" type="Node2D" parent="." unique_id=1738946145]
-
-[node name="Pre-Death" parent="." unique_id=2145444490 instance=ExtResource("5_miqgn")]
-visible = false
-script = ExtResource("6_m7cyp")
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("7_2h657")]
 position = Vector2(631, 37)
