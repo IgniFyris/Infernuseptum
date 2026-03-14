@@ -17,6 +17,7 @@ class_name SPlayer
 
 @export var speed = 7.0
 @export var SlothBorderAnimPlayer : AnimationPlayer
+@export var PlayerAnim : AnimationPlayer
 @export var jump_height : float = 40.0
 @export var jump_time_to_peak : float = 0.25
 @export var jump_time_to_descent : float = 0.19
@@ -74,9 +75,7 @@ func gravityget() -> float:
 #🦥 SLOTH RING 🦥
 func _on_sloth_death_timer_timeout() -> void:
 	dead = true
-	SlothBorderAnimPlayer.stop()
 	SlothBorder.modulate.a = 1
-	SceneLoader.load_scene(death_scene)
 	
 func _on_cam_timer_timeout() -> void:
 	Camera.enabled = true

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkhq0d3r7npv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qlpb"]
+
+[node name="Coins" type="Area2D" unique_id=1201366693]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=355931036]
+shape = SubResource("CircleShape2D_5qlpb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1875244594]

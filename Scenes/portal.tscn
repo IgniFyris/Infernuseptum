@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blojlmag8ujmm"]
 
-[ext_resource type="Texture2D" uid="uid://cy1tpokb4wdgh" path="res://Assets/SPRITES (OTHERS)_20260313194515 (1).png" id="1_j20fm"]
+[ext_resource type="Texture2D" uid="uid://cy1tpokb4wdgh" path="res://Assets/PortalSprites.png" id="1_j20fm"]
 [ext_resource type="Script" uid="uid://bro8syh4pt3wo" path="res://Scripts/portal.gd" id="1_oi2tk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi2tk"]

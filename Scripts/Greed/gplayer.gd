@@ -20,6 +20,7 @@ class_name GPlayer
 
 var speed_multipilier = 30
 var direction = 0
+var dead = false
 
 func _ready() -> void:
 	Camera.enabled = false
