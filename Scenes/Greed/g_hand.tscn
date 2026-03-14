@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dxl14xct30qi2"]
+
+[ext_resource type="Script" uid="uid://dac6f4ano02kw" path="res://Scripts/Greed/g_hand.gd" id="1_n5ldd"]
+[ext_resource type="Texture2D" uid="uid://c4w4ujiw0j2qt" path="res://Assets/Greed/GHandUp.png" id="2_n5ldd"]
+[ext_resource type="Texture2D" uid="uid://crfcnhao3ykkf" path="res://Assets/Greed/GWarning.png" id="3_n5ldd"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_h0phu"]
+length = 13.226038
+
+[node name="GHand" type="Area2D" unique_id=1814927477]
+scale = Vector2(2, 2)
+script = ExtResource("1_n5ldd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405973312]
+position = Vector2(6.5, 1.5)
+rotation = 1.6755161
+scale = Vector2(3.54, 3.54)
+shape = SubResource("SeparationRayShape2D_h0phu")
+
+[node name="HandSprite" type="Sprite2D" parent="." unique_id=1685083005]
+position = Vector2(-17.5, -3)
+scale = Vector2(0.068, 0.068)
+texture = ExtResource("2_n5ldd")
+region_enabled = true
+region_rect = Rect2(517.2478, 33.3181, 736.98254, 331.9994)
+
+[node name="GrabTimer" type="Timer" parent="." unique_id=1194956189]
+one_shot = true
+
+[node name="StayDownTimer" type="Timer" parent="." unique_id=915808169]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1547470020]
+position = Vector2(-72.5, -5)
+scale = Vector2(0.036111113, 0.036111113)
+texture = ExtResource("3_n5ldd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="GrabTimer" to="." method="_on_grab_timer_timeout"]
+[connection signal="timeout" from="StayDownTimer" to="." method="_on_stay_down_timer_timeout"]

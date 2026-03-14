@@ -6,7 +6,7 @@ var LustScene = "uid://c725gkt87eq1a"
 var EnvyScene = "uid://cmu8favv2d85q"
 var GluttonyScene = "uid://d353el0o6o1go"
 var WrathScene = "uid://b8keb87g85h2m"
-var PrideScene = ""
+var PrideScene = "uid://dx1rkeaxlauvg"
 
 func _ready() -> void:
 	self.monitoring = true

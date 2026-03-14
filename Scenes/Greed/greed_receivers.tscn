@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cdecy4yblb7s2"]
+
+[ext_resource type="Script" uid="uid://3e1plgq727yx" path="res://Scripts/Greed/greed_receivers.gd" id="1_su4lq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h6b14"]
+load_path = "res://.godot/imported/GCuppedHands.png-aa0ac3eec421b2806e5a53bcc8f09d6b.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su4lq"]
+size = Vector2(590, 403)
+
+[node name="GreedReceivers" type="Area2D" unique_id=417812985]
+script = ExtResource("1_su4lq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=578248494]
+scale = Vector2(0.31944445, 0.31944445)
+texture = SubResource("CompressedTexture2D_h6b14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1505863326]
+position = Vector2(20, 21.5)
+shape = SubResource("RectangleShape2D_su4lq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

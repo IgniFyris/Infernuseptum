@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cgniykeif8jyv"]
+
+[ext_resource type="Texture2D" uid="uid://et110fipe65b" path="res://Assets/Greed/GShop.png" id="1_qaxp8"]
+[ext_resource type="Script" uid="uid://bwgssngeovi1q" path="res://Scripts/Greed/g_shop.gd" id="1_v074i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v074i"]
+size = Vector2(174, 114)
+
+[node name="Shop" type="Area2D" unique_id=1004000159]
+script = ExtResource("1_v074i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=293475967]
+z_index = 10
+position = Vector2(13, -6)
+shape = SubResource("RectangleShape2D_v074i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1151729494]
+position = Vector2(-1.9073486e-06, 2.3841858e-07)
+scale = Vector2(0.2166667, 0.21666667)
+texture = ExtResource("1_qaxp8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

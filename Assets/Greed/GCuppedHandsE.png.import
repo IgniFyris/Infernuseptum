@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc0kyhirjiirs"
-path="res://.godot/imported/GBG.png-ca5a4b554fbde875d9af5aa149ee7c6d.ctex"
+uid="uid://dxcvh3ynu560d"
+path="res://.godot/imported/GCuppedHandsE.png-6048d0a3405a55375c6b584ca124b193.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Greed/GBG.png"
-dest_files=["res://.godot/imported/GBG.png-ca5a4b554fbde875d9af5aa149ee7c6d.ctex"]
+source_file="res://Assets/Greed/GCuppedHandsE.png"
+dest_files=["res://.godot/imported/GCuppedHandsE.png-6048d0a3405a55375c6b584ca124b193.ctex"]
 
 [params]
 

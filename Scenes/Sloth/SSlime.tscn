@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf81rxqxf675i"]
 
 [ext_resource type="Texture2D" uid="uid://m2x6k7hn667p" path="res://Assets/Sloth/SSlime.png" id="1_etj8r"]
-[ext_resource type="Script" uid="uid://br41uvkioi61t" path="res://Scenes/Sloth/black_slime_slowness.gd" id="1_u87qf"]
+[ext_resource type="Script" uid="uid://br41uvkioi61t" path="res://Scripts/Sloth/black_slime_slowness.gd" id="1_u87qf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u87qf"]
 size = Vector2(40, 6)

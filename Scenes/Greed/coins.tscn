@@ -1,10 +1,67 @@
 [gd_scene format=3 uid="uid://bkhq0d3r7npv"]
 
+[ext_resource type="Script" uid="uid://d3vqtpep0imcj" path="res://Scripts/Greed/coins.gd" id="1_2knwc"]
+[ext_resource type="Texture2D" uid="uid://bibijckyjepj4" path="res://Assets/Greed/GCoins.png" id="1_8j644"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qlpb"]
 
+[sub_resource type="Animation" id="Animation_8j644"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationAgent/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(15.88, 260, 200, 200)]
+}
+
+[sub_resource type="Animation" id="Animation_2knwc"]
+resource_name = "rotate"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationAgent/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(15.88, 260, 200, 200), Rect2(220.69, 260, 200, 200), Rect2(435.145, 260, 200, 200), Rect2(645.985, 260, 200, 200), Rect2(860.85, 260, 200, 200), Rect2(1067.98, 260, 200, 200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_npqsx"]
+_data = {
+&"RESET": SubResource("Animation_8j644"),
+&"rotate": SubResource("Animation_2knwc")
+}
+
 [node name="Coins" type="Area2D" unique_id=1201366693]
+script = ExtResource("1_2knwc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=355931036]
 shape = SubResource("CircleShape2D_5qlpb")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1875244594]
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=847701416]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationAgent" unique_id=1875244594]
+scale = Vector2(0.1, 0.09999995)
+texture = ExtResource("1_8j644")
+region_enabled = true
+region_rect = Rect2(15.88, 260, 200, 200)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationAgent" unique_id=1648927008]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_npqsx")
+autoplay = &"rotate"
+speed_scale = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

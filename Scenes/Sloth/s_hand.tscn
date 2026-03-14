@@ -92,10 +92,9 @@ _data = {
 &"grab_upwards": SubResource("Animation_367lj")
 }
 
-[node name="SHand" type="Area2D" unique_id=1814927477 node_paths=PackedStringArray("AnimPlayer")]
+[node name="SHand" type="Area2D" unique_id=1814927477]
 scale = Vector2(2, 2)
 script = ExtResource("1_ca2mi")
-AnimPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405973312]
 position = Vector2(1.5, 0.5)
