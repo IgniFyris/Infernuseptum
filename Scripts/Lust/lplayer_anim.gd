@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var Player : GPlayer
+@export var Player : LPlayer
 @export var PlayerAnim : AnimationPlayer
 @export var Sprite : Sprite2D
 

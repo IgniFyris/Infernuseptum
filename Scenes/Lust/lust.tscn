@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcyg7rims1m1o" path="res://Assets/Lust/LBG.png" id="1_ntoy7"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="5_oq2pb"]
+[ext_resource type="PackedScene" uid="uid://dlrap4atvl4ao" path="res://Scenes/Lust/succubi.tscn" id="5_txyyc"]
 [ext_resource type="PackedScene" uid="uid://dsljjui72iamg" path="res://Scenes/Lust/Lplayer.tscn" id="6_ntoy7"]
 [ext_resource type="Texture2D" uid="uid://r3jjtn6snqtt" path="res://Assets/Lust/LTiles.png" id="6_uanki"]
 
@@ -54,9 +55,19 @@ tile_map_data = PackedByteArray("AAAAABUAAAAAAAEAAAAAABYAAAAAAAEAAAABABUAAAAAAAE
 tile_set = SubResource("TileSet_pelau")
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("6_ntoy7")]
+z_index = 10
 position = Vector2(58, 660)
 
 [node name="Succubi" type="Node2D" parent="." unique_id=1738946145]
+
+[node name="Area2D" parent="Succubi" unique_id=565978670 instance=ExtResource("5_txyyc")]
+position = Vector2(183, 503)
+
+[node name="Area2D2" parent="Succubi" unique_id=1529992715 instance=ExtResource("5_txyyc")]
+position = Vector2(974, 441)
+
+[node name="Area2D3" parent="Succubi" unique_id=1895020706 instance=ExtResource("5_txyyc")]
+position = Vector2(349, 84)
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("5_oq2pb")]
 position = Vector2(631, 37)

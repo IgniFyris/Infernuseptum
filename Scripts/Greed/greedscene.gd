@@ -21,6 +21,7 @@ func _process(_delta: float) -> void:
 		PlayerCam.enabled = false
 		GShopCam.enabled = true
 		Player.cam = true
+		Player.Bag.visible = false
 		var tw = create_tween().tween_property(GShop, "modulate:a", 1, 2.5)
 		
 		await tw.finished
@@ -40,5 +41,4 @@ func _on_g_question_pressed_right() -> void:
 func _on_shop_player_entered_shop() -> void:
 	GQuestionnaire.visible = true
 	PlayerCam.enabled = false
-	Player.Bag.visible = false
 	Player.cam = true

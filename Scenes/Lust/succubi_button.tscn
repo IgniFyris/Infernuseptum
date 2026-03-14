@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://46517ff8fmhw"]
+
+[ext_resource type="Texture2D" uid="uid://c6ou72qxowpyj" path="res://Assets/Lust/LPushButton.png" id="1_nqmv6"]
+[ext_resource type="Texture2D" uid="uid://bn5ppg27sqxq4" path="res://Assets/Lust/LPushButtonH.png" id="2_ot7gm"]
+[ext_resource type="Script" uid="uid://b6is0sakdoxgr" path="res://Scripts/Lust/succubi_button.gd" id="3_ot7gm"]
+
+[node name="SuccubiButton" type="TextureButton" unique_id=1387723434]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 122.0
+offset_bottom = 124.0
+texture_normal = ExtResource("1_nqmv6")
+texture_hover = ExtResource("2_ot7gm")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_ot7gm")
+
+[node name="SelfDestruct" type="Timer" parent="." unique_id=1873072058]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

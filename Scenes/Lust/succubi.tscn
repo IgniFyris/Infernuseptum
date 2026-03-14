@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dlrap4atvl4ao"]
+
+[ext_resource type="Texture2D" uid="uid://nlougnwcb1oj" path="res://Assets/Lust/LSuc.png" id="1_7e2w2"]
+[ext_resource type="Script" uid="uid://cmhdax3jlmt6b" path="res://Scripts/Lust/succubi.gd" id="1_ti8m5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ti8m5"]
+size = Vector2(155, 136)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ti8m5"]
+radius = 11.666666
+height = 58.33333
+
+[sub_resource type="Animation" id="Animation_ycuon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oca52"]
+resource_name = "float"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8ofq"]
+_data = {
+&"RESET": SubResource("Animation_ycuon"),
+&"float": SubResource("Animation_oca52")
+}
+
+[node name="Area2D" type="Area2D" unique_id=565978670 node_paths=PackedStringArray("AnimPlayer")]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_ti8m5")
+AnimPlayer = NodePath("AnimationPlayer")
+
+[node name="PullCol" type="CollisionShape2D" parent="." unique_id=1178748072]
+position = Vector2(2.5, -6.666664)
+shape = SubResource("RectangleShape2D_ti8m5")
+
+[node name="MainCol" type="CollisionShape2D" parent="." unique_id=1243169424]
+visible = false
+position = Vector2(0, -8.333333)
+shape = SubResource("CapsuleShape2D_ti8m5")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127181242]
+texture = ExtResource("1_7e2w2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1387729005]
+libraries/ = SubResource("AnimationLibrary_k8ofq")
+
+[node name="UpTimer" type="Timer" parent="." unique_id=1558489448]
+wait_time = 0.009999999999999998
+one_shot = true
+
+[node name="DownTimer" type="Timer" parent="." unique_id=774304219]
+wait_time = 0.009999999999999998
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="UpTimer" to="." method="_on_up_timer_timeout"]
+[connection signal="timeout" from="DownTimer" to="." method="_on_down_timer_timeout"]

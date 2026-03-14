@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d1d67blqe5qai"]
+
+[ext_resource type="Texture2D" uid="uid://uhborlgnfoex" path="res://Assets/Lust/Human.png" id="1_sfd2p"]
+[ext_resource type="Script" uid="uid://c2dh33nso3qhk" path="res://Scripts/Lust/succubi_scene.gd" id="1_yuddf"]
+[ext_resource type="Texture2D" uid="uid://ck0ll4834vl5t" path="res://Assets/Lust/Debil.png" id="2_1xlyr"]
+
+[node name="SuccubiScene" type="Node2D" unique_id=733112309]
+script = ExtResource("1_yuddf")
+
+[node name="Human" type="Sprite2D" parent="." unique_id=1965204936]
+texture = ExtResource("1_sfd2p")
+centered = false
+
+[node name="Debil" type="Sprite2D" parent="." unique_id=1503145857]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_1xlyr")
+centered = false
+
+[node name="ButtonCreationTimer" type="Timer" parent="." unique_id=870762742]
+one_shot = true
+
+[node name="Buttons" type="Node2D" parent="." unique_id=395947712]

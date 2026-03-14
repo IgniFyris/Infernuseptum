@@ -46,12 +46,13 @@ sources/0 = SubResource("TileSetAtlasSource_w8uyb")
 [node name="Envy" type="Node2D" unique_id=126099089]
 
 [node name="Background_Closed" type="Sprite2D" parent="." unique_id=293615612]
+z_index = -5
 position = Vector2(640, 360)
 texture = ExtResource("1_6v6x0")
 
 [node name="Background_Open" type="Sprite2D" parent="." unique_id=765247279]
 visible = false
-z_index = 1
+z_index = -2
 position = Vector2(640, 360)
 texture = ExtResource("2_d6pum")
 
