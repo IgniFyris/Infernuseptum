@@ -4,7 +4,10 @@ class_name EPlayer
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
 @onready var CamTimer = $CamTimer
+@onready var GracePeriod = $GracePeriod
+
 @onready var Camera = $Camera2D
+@onready var PurpFilter = $Camera2D/CanvasLayer/ColorRect
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -15,13 +18,18 @@ class_name EPlayer
 @export var jump_time_to_peak : float = 0.25
 @export var jump_time_to_descent : float = 0.19
 
+@export var PurpFilterAnimator : AnimationPlayer
+@export var PlayerAnim : AnimationPlayer
+
 @export var death_scene: StringName = &""
 
 var speed_multipilier = 30
 var direction = 0
 var dead = false
+var eyes_opened = false
 
 func _ready() -> void:
+	PurpFilter.modulate.a = 0
 	Camera.enabled = false
 	CamTimer.start()
 
@@ -49,9 +57,26 @@ func _physics_process(delta):
 		
 		if was_on_floor and not is_on_floor():
 			CoyoteTimer.start()
+			
+		if (GracePeriod.is_stopped() and (abs(self.velocity.x) != 0.0 or self.velocity.y < 0.0)) and eyes_opened:
+			dead = true
+			PlayerAnim.play("death")
+			SceneLoader.load_scene(death_scene)
 	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 	
 func _on_cam_timer_timeout() -> void:
 	Camera.enabled = true
+
+func _on_time_until_open_timer_timeout() -> void:
+	PurpFilterAnimator.play("flash")
+	PurpFilter.modulate.a = 81
+	
+	eyes_opened = true
+	GracePeriod.start()
+
+func _on_time_until_close_timer_timeout() -> void:
+	PurpFilterAnimator.play("back_to_normal")
+	PurpFilter.modulate.a = 0
+	eyes_opened = false

@@ -67,7 +67,7 @@ position = Vector2(183, 503)
 position = Vector2(974, 441)
 
 [node name="Area2D3" parent="Succubi" unique_id=1895020706 instance=ExtResource("5_txyyc")]
-position = Vector2(349, 84)
+position = Vector2(356, 258)
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("5_oq2pb")]
 position = Vector2(631, 37)

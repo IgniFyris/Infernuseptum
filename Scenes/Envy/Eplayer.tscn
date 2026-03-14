@@ -1,8 +1,74 @@
 [gd_scene format=3 uid="uid://bpjpk64ily67n"]
 
 [ext_resource type="Script" uid="uid://qmytysewtdkb" path="res://Scripts/Envy/eplayer.gd" id="1_lgllb"]
-[ext_resource type="Script" uid="uid://dppjrir8xd3jg" path="res://Scripts/Greed/gplayer_animation.gd" id="2_shxod"]
+[ext_resource type="Script" uid="uid://cxpjhgmwn8g20" path="res://Scripts/Envy/eplayer_anim.gd" id="2_shxod"]
 [ext_resource type="Texture2D" uid="uid://b4vd2npdjaa1j" path="res://Assets/PlayerSprites.png" id="3_u6j15"]
+
+[sub_resource type="Animation" id="Animation_ms1eb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8784314)]
+}
+
+[sub_resource type="Animation" id="Animation_shxod"]
+resource_name = "back_to_normal"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.31764704), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u6j15"]
+resource_name = "flash"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.79902697, 0.63089204, 1, 0.7411765), Color(0.67600113, 0.31283826, 1, 0.31764707)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6e3yy"]
+_data = {
+&"RESET": SubResource("Animation_ms1eb"),
+&"back_to_normal": SubResource("Animation_shxod"),
+&"flash": SubResource("Animation_u6j15")
+}
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -136,9 +202,11 @@ _data = {
 radius = 4.8582993
 height = 24.477734
 
-[node name="Player" type="CharacterBody2D" unique_id=1995535131]
+[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("PurpFilterAnimator", "PlayerAnim")]
 scale = Vector2(1.235, 1.235)
 script = ExtResource("1_lgllb")
+PurpFilterAnimator = NodePath("Camera2D/CanvasLayer/PurpFilterAnim")
+PlayerAnim = NodePath("AnimationAgent/PlayerAnim")
 death_scene = &"uid://br7ao02pl5e7w"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
@@ -146,6 +214,24 @@ position = Vector2(2.48, -14.8)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1229930863]
+offset = Vector2(-20, 0)
+transform = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=268323943]
+modulate = Color(1, 1, 1, 0.8784314)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6745098, 0.28235295, 1, 0.46666667)
+
+[node name="PurpFilterAnim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=32466845]
+libraries/ = SubResource("AnimationLibrary_6e3yy")
 
 [node name="AnimationAgent" type="Node2D" parent="." unique_id=1727452803 node_paths=PackedStringArray("Player", "PlayerAnim", "Sprite")]
 script = ExtResource("2_shxod")
@@ -180,6 +266,10 @@ one_shot = true
 
 [node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
 wait_time = 2.0
+one_shot = true
+
+[node name="GracePeriod" type="Timer" parent="." unique_id=1829775426]
+wait_time = 0.7
 one_shot = true
 
 [connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]
