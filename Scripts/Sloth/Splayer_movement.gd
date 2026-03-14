@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name SPlayer
 
-signal SlothDeath
-
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
 @onready var CamTimer = $CamTimer
@@ -30,50 +28,54 @@ var direction = 0
 
 #🦥 SLOTH RING 🦥
 var is_in_slime = false
+var dead = false
 
 func _ready() -> void:
 	Camera.enabled = false
 	CamTimer.start()
 
 func _physics_process(delta):
-	
-	velocity.y += gravityget() * delta
+	if not dead:
+		velocity.y += gravityget() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump"):
-		JumpBufferTimer.start()
-		
-	if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not JumpBufferTimer.is_stopped() and not is_in_slime:
-		velocity.y = jump_velocity
+		# Handle jump.
+		if Input.is_action_just_pressed("jump"):
+			JumpBufferTimer.start()
+			
+		if	(is_on_floor() or not CoyoteTimer.is_stopped()) and not JumpBufferTimer.is_stopped() and not is_in_slime:
+			velocity.y = jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	direction = Input.get_axis("move_left", "move_right")
-	if direction:
-		velocity.x = direction * speed * speed_multipilier
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed * speed_multipilier)
-		
-	#SLOTH RING
-	if ((velocity.x != 0.0) or not is_on_floor()) and not SlothDeathTimer.is_stopped():
-		SlothDeathTimer.stop()
-		SlothBorderAnimPlayer.stop()
-	elif ((velocity.x == 0.0) or is_on_floor()) and SlothDeathTimer.is_stopped():
-		SlothDeathTimer.start()
-		SlothBorderAnimPlayer.play("fade")
-		
-	var was_on_floor = is_on_floor()
+		# Get the input direction and handle the movement/deceleration.
+		direction = Input.get_axis("move_left", "move_right")
+		if direction:
+			velocity.x = direction * speed * speed_multipilier
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed * speed_multipilier)
+			
+		#SLOTH RING
+		if CamTimer.is_stopped() and not dead:
+			if ((velocity.x != 0.0) or not is_on_floor()) and not SlothDeathTimer.is_stopped():
+				SlothDeathTimer.stop()
+				SlothBorderAnimPlayer.stop()
+			elif ((velocity.x == 0.0) or is_on_floor()) and SlothDeathTimer.is_stopped():
+				SlothDeathTimer.start()
+				SlothBorderAnimPlayer.play("fade")
+			
+		var was_on_floor = is_on_floor()
 
-	move_and_slide()
-	
-	if was_on_floor and not is_on_floor():
-		CoyoteTimer.start()
+		move_and_slide()
+		
+		if was_on_floor and not is_on_floor():
+			CoyoteTimer.start()
 	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
 #🦥 SLOTH RING 🦥
 func _on_sloth_death_timer_timeout() -> void:
-	SlothDeath.emit()
+	dead = true
+	SlothBorderAnimPlayer.stop()
+	SlothBorder.modulate.a = 1
 	SceneLoader.load_scene(death_scene)
 	
 func _on_cam_timer_timeout() -> void:

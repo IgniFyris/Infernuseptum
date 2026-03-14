@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://c4ntjvn66hu31"]
+
+[ext_resource type="Script" uid="uid://dbfjl5pi7wexk" path="res://Scripts/Sloth/s_hand.gd" id="1_ca2mi"]
+[ext_resource type="Texture2D" uid="uid://b5kjdskxqsdqq" path="res://Assets/Sloth/SHand.png" id="1_hxy04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca2mi"]
+size = Vector2(9, 14.5)
+
+[sub_resource type="Animation" id="Animation_q3m2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(85, 223.88, 250, 270)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_367lj"]
+resource_name = "grab_upwards"
+length = 0.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 8.5), Vector2(1.5, 4.5), Vector2(1.5, 1.25), Vector2(1.5, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(982.89, 223.88, 250, 270), Rect2(683.3, 223.88, 250, 270), Rect2(383.745, 223.88, 250, 270), Rect2(85, 223.88, 250, 270)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mv1pt"]
+_data = {
+&"RESET": SubResource("Animation_q3m2j"),
+&"grab_upwards": SubResource("Animation_367lj")
+}
+
+[node name="SHand" type="Area2D" unique_id=1814927477 node_paths=PackedStringArray("AnimPlayer")]
+scale = Vector2(2, 2)
+script = ExtResource("1_ca2mi")
+AnimPlayer = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405973312]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_ca2mi")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1685083005]
+scale = Vector2(0.0833333, 0.083333336)
+texture = ExtResource("1_hxy04")
+region_enabled = true
+region_rect = Rect2(85, 223.88, 250, 270)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1514288257]
+libraries/ = SubResource("AnimationLibrary_mv1pt")
+playback_auto_capture = false
+speed_scale = 3.0
+
+[node name="GrabTimer" type="Timer" parent="." unique_id=1194956189]
+one_shot = true
+
+[node name="StayDownTimer" type="Timer" parent="." unique_id=915808169]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="GrabTimer" to="." method="_on_grab_timer_timeout"]
+[connection signal="timeout" from="StayDownTimer" to="." method="_on_stay_down_timer_timeout"]

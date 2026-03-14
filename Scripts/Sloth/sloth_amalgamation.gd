@@ -1,7 +1,5 @@
 extends Area2D
 
-signal SlothAmalgamationDeath
-
 var DeathScene = "uid://br7ao02pl5e7w"
 
 func _ready() -> void:
@@ -9,5 +7,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is SPlayer:
-		SlothAmalgamationDeath.emit()
+		body.dead = true
 		SceneLoader.load_scene(DeathScene)

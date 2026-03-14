@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bn7uv04tu10ap" path="res://Assets/Sloth/STiles.png" id="2_8nc4u"]
 [ext_resource type="PackedScene" uid="uid://cf81rxqxf675i" path="res://Scenes/Sloth/SSlime.tscn" id="4_5el35"]
 [ext_resource type="PackedScene" uid="uid://bb7r4semmxla8" path="res://Scenes/Sloth/Splayer.tscn" id="4_gvy83"]
-[ext_resource type="PackedScene" uid="uid://bl4rjggnweu8y" path="res://Scenes/pre_death.tscn" id="5_4exqb"]
-[ext_resource type="Script" uid="uid://dys2ts3ycr0oq" path="res://Scripts/Sloth/sloth_pre_death_activation.gd" id="6_k6t5v"]
+[ext_resource type="PackedScene" uid="uid://c4ntjvn66hu31" path="res://Scenes/Sloth/s_hand.tscn" id="5_gbr7a"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="7_k6t5v"]
 [ext_resource type="PackedScene" uid="uid://crcko7swbumeg" path="res://Scenes/Sloth/sloth_amalgamation.tscn" id="8_origs"]
 [ext_resource type="Script" uid="uid://c4xa0o0n4bucq" path="res://Scripts/Sloth/sloth_amalgamation.gd" id="9_xkqcb"]
@@ -65,17 +64,58 @@ position = Vector2(134, 663)
 [node name="Slimes" type="Node2D" parent="." unique_id=1738946145]
 
 [node name="SSlime" parent="Slimes" unique_id=422333192 instance=ExtResource("4_5el35")]
-position = Vector2(49, 684)
+position = Vector2(761, 684)
 
 [node name="SSlime2" parent="Slimes" unique_id=1605128826 instance=ExtResource("4_5el35")]
-position = Vector2(421, 588)
+position = Vector2(479, 492)
 
 [node name="SSlime3" parent="Slimes" unique_id=789701982 instance=ExtResource("4_5el35")]
 position = Vector2(272, 620)
 
-[node name="Pre-Death" parent="." unique_id=2145444490 instance=ExtResource("5_4exqb")]
-visible = false
-script = ExtResource("6_k6t5v")
+[node name="SSlime4" parent="Slimes" unique_id=964873541 instance=ExtResource("4_5el35")]
+position = Vector2(580, 556)
+
+[node name="SSlime5" parent="Slimes" unique_id=1194631003 instance=ExtResource("4_5el35")]
+position = Vector2(921, 428)
+
+[node name="SSlime6" parent="Slimes" unique_id=45851285 instance=ExtResource("4_5el35")]
+position = Vector2(326, 300)
+
+[node name="SSlime7" parent="Slimes" unique_id=1953910601 instance=ExtResource("4_5el35")]
+position = Vector2(761, 172)
+
+[node name="SSlime8" parent="Slimes" unique_id=1957139582 instance=ExtResource("4_5el35")]
+position = Vector2(1089, 363)
+
+[node name="SSlime9" parent="Slimes" unique_id=195541318 instance=ExtResource("4_5el35")]
+position = Vector2(636, 300)
+
+[node name="Hands" type="Node2D" parent="." unique_id=693829286]
+position = Vector2(0, 600)
+
+[node name="SHand" parent="Hands" unique_id=1814927477 instance=ExtResource("5_gbr7a")]
+position = Vector2(199, -354)
+
+[node name="SHand2" parent="Hands" unique_id=1522927314 instance=ExtResource("5_gbr7a")]
+position = Vector2(781, -129)
+
+[node name="SHand3" parent="Hands" unique_id=260137919 instance=ExtResource("5_gbr7a")]
+position = Vector2(621, -423)
+rotation = 1.5707964
+
+[node name="SHand4" parent="Hands" unique_id=1417153405 instance=ExtResource("5_gbr7a")]
+position = Vector2(921, -386)
+
+[node name="SHand5" parent="Hands" unique_id=1028534939 instance=ExtResource("5_gbr7a")]
+position = Vector2(565, -588)
+rotation = 3.1415927
+
+[node name="SHand6" parent="Hands" unique_id=1862878254 instance=ExtResource("5_gbr7a")]
+position = Vector2(499, -300)
+rotation = 3.1415927
+
+[node name="SHand7" parent="Hands" unique_id=687780762 instance=ExtResource("5_gbr7a")]
+position = Vector2(252, -129)
 
 [node name="Portal" parent="." unique_id=93760495 instance=ExtResource("7_k6t5v")]
 position = Vector2(631, 37)
@@ -85,6 +125,4 @@ z_index = 15
 position = Vector2(0, 600)
 script = ExtResource("9_xkqcb")
 
-[connection signal="SlothDeath" from="Player" to="Pre-Death" method="_on_player_sloth_death"]
-[connection signal="SlothAmalgamationDeath" from="SlothAmalgamation" to="Pre-Death" method="_on_sloth_amalgamation_sloth_amalgamation_death"]
 [connection signal="body_entered" from="SlothAmalgamation" to="SlothAmalgamation" method="_on_body_entered"]
