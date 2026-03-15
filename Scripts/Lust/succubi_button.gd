@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 		if parent_node:
 			var siblings_list = parent_node.get_children()
 			for sibling in siblings_list:
-				if sibling != self and (sibling.name == "Human" or sibling.name == "Debil" or sibling.name == "ButtonCreationTimer"):
+				if sibling != self and (sibling.name == "BG1s" or sibling.name == "BG2s" or sibling.name == "BG3s" or sibling.name == "ButtonCreationTimer"):
 					sibling.queue_free()
 		SceneLoader.load_scene(DeathScene)
 		parent_node.queue_free()

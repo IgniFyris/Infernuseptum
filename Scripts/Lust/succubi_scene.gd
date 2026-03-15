@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var ButtonCreationTimer = $ButtonCreationTimer
-@onready var Debil = $Debil
-@onready var Buttons = $Buttons
+@onready var A2 = $BG2s
+@onready var A3 = $BG3s
 
 var SucButton: PackedScene = preload("uid://46517ff8fmhw")
 
@@ -24,5 +24,7 @@ func _process(_delta: float) -> void:
 	elif total_buttons_made == 20:
 		queue_free()
 		
-	if total_buttons_made == 10:
-		create_tween().tween_property(Debil, "modulate:a", 1, 2)
+	if total_buttons_made == 7:
+		create_tween().tween_property(A2, "modulate:a", 1, 2)
+	elif total_buttons_made == 14:
+		create_tween().tween_property(A3, "modulate:a", 1, 2)

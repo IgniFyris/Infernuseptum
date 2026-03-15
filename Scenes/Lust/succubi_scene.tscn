@@ -1,22 +1,214 @@
 [gd_scene format=3 uid="uid://d1d67blqe5qai"]
 
-[ext_resource type="Texture2D" uid="uid://uhborlgnfoex" path="res://Assets/Lust/Human.png" id="1_sfd2p"]
 [ext_resource type="Script" uid="uid://c2dh33nso3qhk" path="res://Scripts/Lust/succubi_scene.gd" id="1_yuddf"]
-[ext_resource type="Texture2D" uid="uid://ck0ll4834vl5t" path="res://Assets/Lust/Debil.png" id="2_1xlyr"]
+[ext_resource type="Texture2D" uid="uid://u5mucmyqxmv5" path="res://Assets/Lust/LA1_1.png" id="2_2ro0f"]
+[ext_resource type="Texture2D" uid="uid://dnc413j41fjcv" path="res://Assets/Lust/LA1_2.png" id="3_h0j0d"]
+[ext_resource type="Texture2D" uid="uid://d4ih57pc0bhob" path="res://Assets/Lust/LA1_3.png" id="4_5euxl"]
+[ext_resource type="Texture2D" uid="uid://brgse0hc5wjux" path="res://Assets/Lust/LA1_4.png" id="5_wy7q6"]
+[ext_resource type="Texture2D" uid="uid://q5sjjebsfcdn" path="res://Assets/Lust/LA2_1.png" id="6_qoa3j"]
+[ext_resource type="Texture2D" uid="uid://bgg1lgjcys7s6" path="res://Assets/Lust/LA2_2.png" id="7_18dch"]
+[ext_resource type="Texture2D" uid="uid://cat0xaihholef" path="res://Assets/Lust/LA2_3.png" id="8_wukx2"]
+[ext_resource type="Texture2D" uid="uid://bbbft46wjy0cw" path="res://Assets/Lust/LA2_4.png" id="9_5fwmn"]
+[ext_resource type="Texture2D" uid="uid://dcpveea2y2p7l" path="res://Assets/Lust/LA3_1.png" id="10_1e62n"]
+[ext_resource type="Texture2D" uid="uid://bocw07k0rqac3" path="res://Assets/Lust/LA3_2.png" id="11_16ojs"]
+[ext_resource type="Texture2D" uid="uid://d0npgqjfbfdk5" path="res://Assets/Lust/LA3_3.png" id="12_ba3kc"]
+[ext_resource type="Texture2D" uid="uid://crf0ywbkghior" path="res://Assets/Lust/LA3_4.png" id="13_g7hif"]
+
+[sub_resource type="Animation" id="Animation_f7pt2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6fxt7"]
+resource_name = "anim"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axsst"]
+_data = {
+&"RESET": SubResource("Animation_f7pt2"),
+&"anim": SubResource("Animation_6fxt7")
+}
 
 [node name="SuccubiScene" type="Node2D" unique_id=733112309]
 script = ExtResource("1_yuddf")
 
-[node name="Human" type="Sprite2D" parent="." unique_id=1965204936]
-texture = ExtResource("1_sfd2p")
+[node name="BG1s" type="Node2D" parent="." unique_id=1227436059]
+z_index = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="BG1s" unique_id=629249473]
+texture = ExtResource("2_2ro0f")
 centered = false
 
-[node name="Debil" type="Sprite2D" parent="." unique_id=1503145857]
-modulate = Color(1, 1, 1, 0)
-texture = ExtResource("2_1xlyr")
+[node name="Sprite2D2" type="Sprite2D" parent="BG1s" unique_id=2145242996]
+visible = false
+texture = ExtResource("3_h0j0d")
 centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="BG1s" unique_id=432016752]
+visible = false
+texture = ExtResource("4_5euxl")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="BG1s" unique_id=246446615]
+visible = false
+texture = ExtResource("5_wy7q6")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG1s" unique_id=203838511]
+libraries/ = SubResource("AnimationLibrary_axsst")
+autoplay = &"anim"
+speed_scale = 0.7
+
+[node name="BG2s" type="Node2D" parent="." unique_id=839016581]
+modulate = Color(1, 1, 1, 0)
+z_index = 40
+
+[node name="Sprite2D" type="Sprite2D" parent="BG2s" unique_id=550180250]
+texture = ExtResource("6_qoa3j")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="BG2s" unique_id=464289501]
+visible = false
+texture = ExtResource("7_18dch")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="BG2s" unique_id=577019093]
+visible = false
+texture = ExtResource("8_wukx2")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="BG2s" unique_id=1571068393]
+visible = false
+texture = ExtResource("9_5fwmn")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG2s" unique_id=2052042103]
+libraries/ = SubResource("AnimationLibrary_axsst")
+autoplay = &"anim"
+speed_scale = 0.7
+
+[node name="BG3s" type="Node2D" parent="." unique_id=1670476712]
+modulate = Color(1, 1, 1, 0)
+z_index = 60
+
+[node name="Sprite2D" type="Sprite2D" parent="BG3s" unique_id=1573705732]
+texture = ExtResource("10_1e62n")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="BG3s" unique_id=822057837]
+visible = false
+texture = ExtResource("11_16ojs")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="BG3s" unique_id=983673622]
+visible = false
+texture = ExtResource("12_ba3kc")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="BG3s" unique_id=977174916]
+visible = false
+texture = ExtResource("13_g7hif")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BG3s" unique_id=33714485]
+libraries/ = SubResource("AnimationLibrary_axsst")
+autoplay = &"anim"
+speed_scale = 0.7
 
 [node name="ButtonCreationTimer" type="Timer" parent="." unique_id=870762742]
 one_shot = true
-
-[node name="Buttons" type="Node2D" parent="." unique_id=395947712]
