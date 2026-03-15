@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dkd7smxss273l" path="res://Assets/Pride/PRIDE_5.png" id="9_tgie6"]
 [ext_resource type="Texture2D" uid="uid://c45bict8ruiwj" path="res://Assets/Pride/PRIDE_6.png" id="10_nlyq5"]
 [ext_resource type="Texture2D" uid="uid://bdw40mbv2vyd" path="res://Assets/Pride/PRIDE_D.png" id="11_os7ec"]
+[ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="14_5tt6o"]
 [ext_resource type="PackedScene" uid="uid://rwkest05ddh" path="res://Scenes/Pride/bait.tscn" id="14_ed315"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8mlt1"]
@@ -167,7 +168,12 @@ position = Vector2(638, 673)
 position = Vector2(640, 401)
 scale = Vector2(0.805, 0.805)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1692453430]
+stream = ExtResource("14_5tt6o")
+
 [connection signal="BossDeath" from="." to="Player" method="_on_pride_boss_death"]
 [connection signal="body_entered" from="PrideLevel/PrideBlocks/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="BossStart" from="Player" to="." method="_on_player_boss_start"]
+[connection signal="PlayerDeath" from="Player" to="." method="_on_player_player_death"]
 [connection signal="CutsceneDone" from="Bait" to="Player" method="_on_bait_cutscene_done"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

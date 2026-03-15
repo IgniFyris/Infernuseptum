@@ -20,7 +20,7 @@ func _ready() -> void:
 	UntilShowTimer.start()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is PPlayer:
+	if body is PPlayer or body is OPPlayer:
 		body.pride_meter += 1
 		queue_free()
 

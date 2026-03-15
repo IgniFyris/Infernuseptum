@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name PPlayer
 
 signal BossStart
+signal PlayerDeath
 
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
@@ -37,6 +38,7 @@ var pride_meter = 0
 var life = 3
 var color = [Color(0.558, 0.558, 0.558, 1.0),  Color(0.899, 0.81, 0.168, 1.0), Color(1.0, 0.521, 0.724, 1.0), Color(0.776, 0.364, 0.923, 1.0), Color(0.479, 0.802, 0.254, 1.0), Color(0.843, 0.112, 0.0, 1.0),]
 var num = 0
+var other_dead = false
 
 func _ready() -> void:
 	HFull.visible = false
@@ -90,6 +92,13 @@ func _physics_process(delta):
 			dead = true
 			WPlayerAnim.play("death")
 			SceneLoader.load_scene(death_scene)
+			PlayerDeath.emit()
+	if other_dead:
+		WPlayerAnim.play("death")
+		SceneLoader.load_scene(death_scene)
+		PlayerDeath.emit()
+		dead = true
+		other_dead = false
 	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity

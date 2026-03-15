@@ -1,0 +1,123 @@
+[gd_scene format=4 uid="uid://nmk7uwiddjt1"]
+
+[ext_resource type="Script" uid="uid://cct3v4aoq7gb0" path="res://Scripts/Pride/opride.gd" id="1_shde1"]
+[ext_resource type="Texture2D" uid="uid://do4glvt1sd4nb" path="res://Assets/Pride/PrideBG.png" id="2_shde1"]
+[ext_resource type="Texture2D" uid="uid://c7mltiwhfk8oi" path="res://Assets/Pride/PTiles.png" id="3_1ws8l"]
+[ext_resource type="Texture2D" uid="uid://dvgqixqwje26i" path="res://Assets/Pride/PRIDE_1.png" id="4_m4gph"]
+[ext_resource type="Texture2D" uid="uid://k3u2l0h7uv4m" path="res://Assets/Pride/PRIDE_2.png" id="5_lvpwa"]
+[ext_resource type="Texture2D" uid="uid://bxcrt615gewwf" path="res://Assets/Pride/PRIDE_4.png" id="6_en1or"]
+[ext_resource type="Texture2D" uid="uid://dkd7smxss273l" path="res://Assets/Pride/PRIDE_5.png" id="7_hmu0s"]
+[ext_resource type="Texture2D" uid="uid://c45bict8ruiwj" path="res://Assets/Pride/PRIDE_6.png" id="8_ouyeh"]
+[ext_resource type="Texture2D" uid="uid://bdw40mbv2vyd" path="res://Assets/Pride/PRIDE_D.png" id="9_8om1t"]
+[ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="11_71krb"]
+[ext_resource type="PackedScene" uid="uid://d02mukl7dpk5u" path="res://Scenes/Pride/opplayer.tscn" id="11_jm3iq"]
+[ext_resource type="PackedScene" uid="uid://csy172xncpjw7" path="res://Scenes/Pride/ppride_boss.tscn" id="12_shde1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7d1c"]
+texture = ExtResource("3_1ws8l")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.78346443, 8, -0.77192974, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.78346443, 8, -0.77192974, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.78346443, 8, -0.77192974, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.78346443, 8, -0.77192974, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_ytydl"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_t7d1c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed315"]
+size = Vector2(640.25, 12)
+
+[node name="Pride" type="Node2D" unique_id=126099089]
+script = ExtResource("1_shde1")
+
+[node name="PrideLevel" type="Node2D" parent="." unique_id=1332319482]
+
+[node name="PrideBG" type="Sprite2D" parent="PrideLevel" unique_id=820949462]
+position = Vector2(640, 360)
+texture = ExtResource("2_shde1")
+
+[node name="PrideBlocks" type="TileMapLayer" parent="PrideLevel" unique_id=1828190342]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD+/xUAAAACAAAAAAD+/xYAAAACAAAAAAD//xUAAAACAAAAAAD//xYAAAACAAAAAAAAABUAAAAAAAMAAAAAABYAAAACAAAAAAABABUAAAAAAAMAAAABABYAAAACAAAAAAACABUAAAAAAAMAAAACABYAAAACAAAAAAADABUAAAAAAAMAAAADABYAAAACAAAAAAAEABUAAAAAAAMAAAAEABYAAAACAAAAAAAFABUAAAAAAAMAAAAFABYAAAACAAAAAAAGABUAAAAAAAMAAAAGABYAAAACAAAAAAAHABUAAAAAAAMAAAAHABYAAAACAAAAAAAIABUAAAAAAAMAAAAIABYAAAACAAAAAAAJABUAAAAAAAMAAAAJABYAAAACAAAAAAAKABUAAAAAAAMAAAAKABYAAAACAAAAAAALABUAAAAAAAMAAAALABYAAAACAAAAAAAMABUAAAAAAAMAAAAMABYAAAACAAAAAAANABUAAAAAAAMAAAANABYAAAACAAAAAAAOABUAAAAAAAMAAAAOABYAAAACAAAAAAAPABUAAAAAAAMAAAAPABYAAAACAAAAAAAQABUAAAAAAAMAAAAQABYAAAACAAAAAAARABUAAAAAAAMAAAARABYAAAACAAAAAAASABUAAAAAAAMAAAASABYAAAACAAAAAAATABUAAAAAAAMAAAATABYAAAACAAAAAAAUABUAAAAAAAMAAAAUABYAAAACAAAAAAAVABUAAAAAAAMAAAAVABYAAAACAAAAAAAWABUAAAAAAAMAAAAWABYAAAACAAAAAAAXABUAAAAAAAMAAAAXABYAAAACAAAAAAAYABUAAAAAAAMAAAAYABYAAAACAAAAAAAZABUAAAAAAAMAAAAZABYAAAACAAAAAAAaABUAAAAAAAMAAAAaABYAAAACAAAAAAAbABUAAAAAAAMAAAAbABYAAAACAAAAAAAcABUAAAAAAAMAAAAcABYAAAACAAAAAAAdABUAAAAAAAMAAAAdABYAAAACAAAAAAAeABUAAAAAAAMAAAAeABYAAAACAAAAAAAfABUAAAAAAAMAAAAfABYAAAACAAAAAAAgABUAAAAAAAMAAAAgABYAAAACAAAAAAAhABUAAAAAAAMAAAAhABYAAAACAAAAAAAiABUAAAAAAAMAAAAiABYAAAACAAAAAAAjABUAAAAAAAMAAAAjABYAAAACAAAAAAAkABUAAAAAAAMAAAAkABYAAAACAAAAAAAlABUAAAAAAAMAAAAlABYAAAACAAAAAAAmABUAAAAAAAMAAAAmABYAAAACAAAAAAAnABUAAAAAAAMAAAAnABYAAAACAAAAAAAoABUAAAACAAAAAAAoABYAAAACAAAAAAApABUAAAACAAAAAAApABYAAAACAAAAAAD+//7/AAACAAAAAAD+////AAACAAAAAAD+/wAAAAACAAAAAAD+/wEAAAACAAAAAAD+/wIAAAACAAAAAAD+/wMAAAACAAAAAAD+/wQAAAACAAAAAAD+/wUAAAACAAAAAAD+/wYAAAACAAAAAAD+/wcAAAACAAAAAAD+/wgAAAACAAAAAAD+/wkAAAACAAAAAAD+/woAAAACAAAAAAD+/wsAAAACAAAAAAD+/wwAAAACAAAAAAD+/w0AAAACAAAAAAD+/w4AAAACAAAAAAD+/w8AAAACAAAAAAD+/xAAAAACAAAAAAD+/xEAAAACAAAAAAD+/xIAAAACAAAAAAD+/xMAAAACAAAAAAD+/xQAAAACAAAAAAD///7/AAACAAAAAAD/////AAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAD//wQAAAACAAAAAAD//wUAAAACAAAAAAD//wYAAAACAAAAAAD//wcAAAACAAAAAAD//wgAAAACAAAAAAD//wkAAAACAAAAAAD//woAAAACAAAAAAD//wsAAAACAAAAAAD//wwAAAACAAAAAAD//w0AAAACAAAAAAD//w4AAAACAAAAAAD//w8AAAACAAAAAAD//xAAAAACAAAAAAD//xEAAAACAAAAAAD//xIAAAACAAAAAAD//xMAAAACAAAAAAD//xQAAAACAAAAAAAAAP7/AAACAAAAAAAAAP//AAACAAAAAAABAP7/AAACAAAAAAABAP//AAACAAAAAAACAP7/AAACAAAAAAACAP//AAACAAAAAAADAP7/AAACAAAAAAADAP//AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAGAP7/AAACAAAAAAAGAP//AAACAAAAAAAHAP7/AAACAAAAAAAHAP//AAACAAAAAAAIAP7/AAACAAAAAAAIAP//AAACAAAAAAAJAP7/AAACAAAAAAAJAP//AAACAAAAAAAKAP7/AAACAAAAAAAKAP//AAACAAAAAAALAP7/AAACAAAAAAALAP//AAACAAAAAAAMAP7/AAACAAAAAAAMAP//AAACAAAAAAANAP7/AAACAAAAAAANAP//AAACAAAAAAAOAP7/AAACAAAAAAAOAP//AAACAAAAAAAPAP7/AAACAAAAAAAPAP//AAACAAAAAAAQAP7/AAACAAAAAAAQAP//AAACAAAAAAARAP7/AAACAAAAAAARAP//AAACAAAAAAASAP7/AAACAAAAAAASAP//AAACAAAAAAATAP7/AAACAAAAAAATAP//AAACAAAAAAAUAP7/AAACAAAAAAAUAP//AAACAAAAAAAVAP7/AAACAAAAAAAVAP//AAACAAAAAAAWAP7/AAACAAAAAAAWAP//AAACAAAAAAAXAP7/AAACAAAAAAAXAP//AAACAAAAAAAYAP7/AAACAAAAAAAYAP//AAACAAAAAAAZAP7/AAACAAAAAAAZAP//AAACAAAAAAAaAP7/AAACAAAAAAAaAP//AAACAAAAAAAbAP7/AAACAAAAAAAbAP//AAACAAAAAAAcAP7/AAACAAAAAAAcAP//AAACAAAAAAAdAP7/AAACAAAAAAAdAP//AAACAAAAAAAeAP7/AAACAAAAAAAeAP//AAACAAAAAAAfAP7/AAACAAAAAAAfAP//AAACAAAAAAAgAP7/AAACAAAAAAAgAP//AAACAAAAAAAhAP7/AAACAAAAAAAhAP//AAACAAAAAAAiAP7/AAACAAAAAAAiAP//AAACAAAAAAAjAP7/AAACAAAAAAAjAP//AAACAAAAAAAkAP7/AAACAAAAAAAkAP//AAACAAAAAAAlAP7/AAACAAAAAAAlAP//AAACAAAAAAAmAP7/AAACAAAAAAAmAP//AAACAAAAAAAnAP7/AAACAAAAAAAnAP//AAACAAAAAAAoAP7/AAACAAAAAAAoAP//AAACAAAAAAApAP7/AAACAAAAAAApAP//AAACAAAAAAAoAAAAAAACAAAAAAAoAAEAAAACAAAAAAAoAAIAAAACAAAAAAAoAAMAAAACAAAAAAAoAAQAAAACAAAAAAAoAAUAAAACAAAAAAAoAAYAAAACAAAAAAAoAAcAAAACAAAAAAAoAAgAAAACAAAAAAAoAAkAAAACAAAAAAAoAAoAAAACAAAAAAAoAAsAAAACAAAAAAAoAAwAAAACAAAAAAAoAA0AAAACAAAAAAAoAA4AAAACAAAAAAAoAA8AAAACAAAAAAAoABAAAAACAAAAAAAoABEAAAACAAAAAAAoABIAAAACAAAAAAAoABMAAAACAAAAAAAoABQAAAACAAAAAAApAAAAAAACAAAAAAApAAEAAAACAAAAAAApAAIAAAACAAAAAAApAAMAAAACAAAAAAApAAQAAAACAAAAAAApAAUAAAACAAAAAAApAAYAAAACAAAAAAApAAcAAAACAAAAAAApAAgAAAACAAAAAAApAAkAAAACAAAAAAApAAoAAAACAAAAAAApAAsAAAACAAAAAAApAAwAAAACAAAAAAApAA0AAAACAAAAAAApAA4AAAACAAAAAAApAA8AAAACAAAAAAApABAAAAACAAAAAAApABEAAAACAAAAAAApABIAAAACAAAAAAApABMAAAACAAAAAAApABQAAAACAAAAAAAQAA0AAAACAAAAAAARAA0AAAACAAAAAAASAA0AAAACAAAAAAATAA0AAAACAAAAAAAUAA0AAAACAAAAAAAVAA0AAAACAAAAAAAWAA0AAAACAAAAAAAXAA0AAAACAAAAAAAYAA0AAAACAAAAAAAPAA0AAAACAAAAAAANAA4AAAACAAAAAAABAAsAAAACAAAAAAACAAsAAAACAAAAAAADAAsAAAACAAAAAAAEAAsAAAACAAAAAAAgAAsAAAACAAAAAAAhAAsAAAACAAAAAAAiAAsAAAACAAAAAAAjAAsAAAACAAAAAAAkAAsAAAACAAAAAAAlAAsAAAACAAAAAAAmAAsAAAACAAAAAAAaAA4AAAACAAAAAAAHAAsAAAACAAAAAAAGAAsAAAACAAAAAAAFAAsAAAACAAAAAAALAA0AAAACAAEAAAAJAAwAAAACAAEAAAAcAA0AAAACAAEAAAAeAAwAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_ytydl")
+
+[node name="Area2D" type="Area2D" parent="PrideLevel/PrideBlocks" unique_id=770104204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrideLevel/PrideBlocks/Area2D" unique_id=1047033439]
+position = Vector2(319.875, 347)
+shape = SubResource("RectangleShape2D_ed315")
+
+[node name="BossBar" type="Node2D" parent="PrideLevel" unique_id=63001029]
+
+[node name="Sprite2D" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=1708829399]
+visible = false
+texture = ExtResource("4_m4gph")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=673463278]
+visible = false
+texture = ExtResource("5_lvpwa")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=876027641]
+visible = false
+texture = ExtResource("6_en1or")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=761049889]
+visible = false
+texture = ExtResource("7_hmu0s")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=240855696]
+visible = false
+texture = ExtResource("8_ouyeh")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="PrideLevel/BossBar" unique_id=1429685619]
+visible = false
+texture = ExtResource("9_8om1t")
+centered = false
+
+[node name="Orbs" type="Node2D" parent="PrideLevel" unique_id=1131173155]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1692453430]
+stream = ExtResource("11_71krb")
+
+[node name="Player" parent="." unique_id=1995535131 instance=ExtResource("11_jm3iq")]
+position = Vector2(630, 403)
+
+[node name="PRIDE_BOSS" parent="." unique_id=1119540425 instance=ExtResource("12_shde1")]
+position = Vector2(636, 171)
+
+[connection signal="BossDeath" from="." to="Player" method="_on_pride_boss_death"]
+[connection signal="BossDeath" from="." to="PRIDE_BOSS" method="_on_pride_boss_death"]
+[connection signal="body_entered" from="PrideLevel/PrideBlocks/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="PlayerDeath" from="Player" to="PRIDE_BOSS" method="_on_player_player_death"]

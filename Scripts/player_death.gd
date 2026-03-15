@@ -30,6 +30,7 @@ var PrevScene : String
 
 func _ready() -> void:
 	PrevScene = SceneLoader.get_previous_scene_path()
+	print(PrevScene)
 	
 	DelayTimer.start()
 	
@@ -46,11 +47,14 @@ func _on_delay_timeout() -> void:
 		death_anim(626.935, 0, 326.0297, 313.4017, GluttonyTitle, Color("0f442fff"))
 	elif PrevScene == WrathDeath:
 		death_anim(800, 350, 326.0297, 313.4017, WrathTitle, Color("59000cff"))
-	elif PrevScene == PrideDeath:
+	elif PrevScene == PrideDeath or PrevScene == "uid://nmk7uwiddjt1":
 		death_anim(931.36, 0, 326.0297, 313.4017, PrideTitle, Color("9b5b0fff"))
 
 func _on_texture_button_pressed() -> void:
-	SceneLoader.load_scene(PrevScene)
+	if PrevScene != PrideDeath:
+		SceneLoader.load_scene(PrevScene)
+	elif PrevScene == PrideDeath or PrevScene == "uid://nmk7uwiddjt1":
+		SceneLoader.load_scene("uid://nmk7uwiddjt1")
 
 func death_anim(x, y, w, h, title, color) -> void:
 	Logos.region_rect = Rect2(x, y, w, h)

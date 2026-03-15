@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://8qf8wccg8f37"]
 
 [ext_resource type="Texture2D" uid="uid://b3uodxi778jdt" path="res://Assets/Pride/GoodEndingTempt.png" id="1_g6vn5"]
+[ext_resource type="Script" uid="uid://b0w3ljxdpasdm" path="res://Scripts/good_ending.gd" id="1_qtgol"]
 [ext_resource type="Texture2D" uid="uid://dgj4uajgn3ct8" path="res://Assets/Pride/ENDINGBG.png" id="2_g6vn5"]
 [ext_resource type="Texture2D" uid="uid://b2vjjetmeokr2" path="res://Assets/Pride/GoodEnding.png" id="2_yu0qq"]
+[ext_resource type="AudioStream" uid="uid://bfdug0j7ccqe1" path="res://Audio/Music/Tutorial.wav" id="4_yu0qq"]
 
 [node name="GoodEnding" type="Node2D" unique_id=1305626840]
+script = ExtResource("1_qtgol")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=830711103]
 z_index = 20
@@ -21,3 +24,8 @@ modulate = Color(1, 1, 1, 0.7294118)
 z_index = -10
 texture = ExtResource("2_g6vn5")
 centered = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1710113897]
+stream = ExtResource("4_yu0qq")
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

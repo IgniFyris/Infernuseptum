@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0eyrfsumik7w"
+path="res://.godot/imported/GREED (1).wav-d973096379d93d0b7ff88766c30cb052.sample"
+
+[deps]
+
+source_file="res://Audio/Music/GREED (1).wav"
+dest_files=["res://.godot/imported/GREED (1).wav-d973096379d93d0b7ff88766c30cb052.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://de8hdk02e4hfh" path="res://Scenes/Greed/g_question.tscn" id="7_3d0pm"]
 [ext_resource type="PackedScene" uid="uid://cgniykeif8jyv" path="res://Scenes/Greed/GShop.tscn" id="11_wrlwf"]
 [ext_resource type="PackedScene" uid="uid://cdecy4yblb7s2" path="res://Scenes/Greed/greed_receivers.tscn" id="12_7y0w3"]
+[ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="15_nfs8n"]
 
 [sub_resource type="Animation" id="Animation_nfs8n"]
 resource_name = "GBG_Anim"
@@ -298,5 +299,9 @@ zoom = Vector2(3, 3)
 visible = false
 z_index = 10
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=263521999]
+stream = ExtResource("15_nfs8n")
+
 [connection signal="PlayerEnteredShop" from="Shop" to="." method="_on_shop_player_entered_shop"]
 [connection signal="PressedRight" from="GQuestion" to="." method="_on_g_question_pressed_right"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

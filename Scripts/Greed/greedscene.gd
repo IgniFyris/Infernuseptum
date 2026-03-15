@@ -10,7 +10,13 @@ extends Node2D
 
 var CutsceneDone = false
 
+@onready var MusicPlayer = $AudioStreamPlayer2D
+
+func _on_audio_stream_player_2d_finished() -> void:
+	MusicPlayer.play()
+
 func _ready() -> void:
+	MusicPlayer.play()
 	Portal.visible = false
 	Portal.monitoring = false
 	GShop.modulate.a = 0

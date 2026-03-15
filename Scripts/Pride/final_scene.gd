@@ -9,9 +9,9 @@ extends Node2D
 func _on_texture_button_pressed() -> void:
 	Button1.disabled = true
 	Button2.disabled = true
-	SceneLoader.load_scene(GoodEnd)
+	SceneLoader.load_scene(BadEnd)
 
 func _on_texture_button_2_pressed() -> void:
 	Button1.disabled = true
 	Button2.disabled = true
-	SceneLoader.load_scene(BadEnd)
+	SceneLoader.load_scene(GoodEnd)

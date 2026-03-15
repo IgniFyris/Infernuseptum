@@ -13,7 +13,13 @@ var rng = RandomNumberGenerator.new()
 var TimeUntilOpen = rng.randf_range(4, 7)
 var TimeUntilClose
 
+@onready var MusicPlayer = $AudioStreamPlayer2D
+
+func _on_audio_stream_player_2d_finished() -> void:
+	MusicPlayer.play()
+
 func _ready() -> void:
+	MusicPlayer.play()
 	BGC.visible = true
 	BGH.visible = false
 	BGO.visible = false

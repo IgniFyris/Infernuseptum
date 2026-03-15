@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://d353el0o6o1go"]
 
+[ext_resource type="Script" uid="uid://dh5gnpvnnqdt2" path="res://Scripts/Gluttony/gluttony.gd" id="1_0crhu"]
 [ext_resource type="Texture2D" uid="uid://mcfvyqx7pnjw" path="res://Assets/Gluttony/GLBG1.png" id="1_u1xv0"]
 [ext_resource type="Texture2D" uid="uid://duph5cxi5u5i1" path="res://Assets/Gluttony/GLTiles.png" id="2_quo23"]
 [ext_resource type="Texture2D" uid="uid://cir3w22r13ymk" path="res://Assets/Gluttony/GLBG2.png" id="2_ys5tm"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dv1f2445bipoi" path="res://Scenes/Gluttony/glmove_plats_up.tscn" id="9_hxq8n"]
 [ext_resource type="PackedScene" uid="uid://b8jvr1s4p8l81" path="res://Scenes/Gluttony/glmove_plats_side.tscn" id="10_02bej"]
 [ext_resource type="PackedScene" uid="uid://cu41n0y3n0w24" path="res://Scenes/Gluttony/gl_bubble.tscn" id="11_tb7xf"]
+[ext_resource type="AudioStream" uid="uid://bv6l8sigcmx1e" path="res://Audio/Music/GLUTTONY.wav" id="13_0crhu"]
 
 [sub_resource type="Animation" id="Animation_02bej"]
 length = 0.001
@@ -163,6 +165,7 @@ sources/0 = SubResource("TileSetAtlasSource_02bej")
 size = Vector2(240, 10)
 
 [node name="Gluttony" type="Node2D" unique_id=126099089]
+script = ExtResource("1_0crhu")
 
 [node name="BG" type="Node2D" parent="." unique_id=212287218]
 
@@ -332,4 +335,8 @@ scale = Vector2(2, 2)
 position = Vector2(208, 112)
 scale = Vector2(2, 2)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=775843315]
+stream = ExtResource("13_0crhu")
+
 [connection signal="body_entered" from="LevelBlocks/Area2D" to="LevelBlocks/Area2D" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

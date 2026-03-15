@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://dagyj4t8j84c4"]
 
+[ext_resource type="Script" uid="uid://d4hxru8tx32vu" path="res://Scripts/Sloth/sloth.gd" id="1_gbr7a"]
 [ext_resource type="Texture2D" uid="uid://cqldu0sds5qkk" path="res://Assets/Sloth/SBG.png" id="1_osc3u"]
 [ext_resource type="Texture2D" uid="uid://bn7uv04tu10ap" path="res://Assets/Sloth/STiles.png" id="2_8nc4u"]
 [ext_resource type="PackedScene" uid="uid://cf81rxqxf675i" path="res://Scenes/Sloth/SSlime.tscn" id="4_5el35"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="7_k6t5v"]
 [ext_resource type="PackedScene" uid="uid://crcko7swbumeg" path="res://Scenes/Sloth/sloth_amalgamation.tscn" id="8_origs"]
 [ext_resource type="Script" uid="uid://c4xa0o0n4bucq" path="res://Scripts/Sloth/sloth_amalgamation.gd" id="9_xkqcb"]
+[ext_resource type="AudioStream" uid="uid://bcb2jevk1we7l" path="res://Audio/Music/SLOTH.wav" id="10_1ii4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5el35"]
 texture = ExtResource("2_8nc4u")
@@ -47,6 +49,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_5el35")
 
 [node name="Sloth" type="Node2D" unique_id=126099089]
+script = ExtResource("1_gbr7a")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=293615612]
 position = Vector2(640, 360)
@@ -124,4 +127,8 @@ script = ExtResource("9_xkqcb")
 [node name="SPlayer" parent="." unique_id=1995535131 instance=ExtResource("4_gvy83")]
 position = Vector2(83, 666)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2088375157]
+stream = ExtResource("10_1ii4x")
+
 [connection signal="body_entered" from="SlothAmalgamation" to="SlothAmalgamation" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

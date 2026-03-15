@@ -247,6 +247,7 @@ offset = Vector2(-20, 0)
 transform = Transform2D(1, 0, 0, 1, -20, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer" unique_id=248763453]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -260,6 +261,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_0hxxa")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="Camera2D/CanvasLayer" unique_id=328106115]
 visible = false
@@ -307,6 +309,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9843137, 0.6392157, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="OtherSins2" type="CanvasLayer" parent="Camera2D" unique_id=1616299445]
 offset = Vector2(-20, 0)
@@ -322,6 +325,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9843137, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Flash" type="AnimationPlayer" parent="Camera2D/OtherSins2" unique_id=434021840]
 root_node = NodePath("../../CanvasLayer")

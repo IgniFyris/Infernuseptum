@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cn02satmie50v" path="res://Assets/Envy/ETiles.png" id="3_oe1b2"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="7_2h657"]
 [ext_resource type="PackedScene" uid="uid://bpjpk64ily67n" path="res://Scenes/Envy/Eplayer.tscn" id="7_6v6x0"]
+[ext_resource type="AudioStream" uid="uid://bcrxd8aua1vh6" path="res://Audio/Music/ENVY.wav" id="8_d6pum"]
 
 [sub_resource type="Animation" id="Animation_6v6x0"]
 length = 0.001
@@ -217,7 +218,11 @@ one_shot = true
 [node name="TimeUntilCloseTimer" type="Timer" parent="." unique_id=1888286947]
 one_shot = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1611467099]
+stream = ExtResource("8_d6pum")
+
 [connection signal="timeout" from="TimeUntilOpenTimer" to="." method="_on_time_until_open_timer_timeout"]
 [connection signal="timeout" from="TimeUntilOpenTimer" to="Player" method="_on_time_until_open_timer_timeout"]
 [connection signal="timeout" from="TimeUntilCloseTimer" to="." method="_on_time_until_close_timer_timeout"]
 [connection signal="timeout" from="TimeUntilCloseTimer" to="Player" method="_on_time_until_close_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

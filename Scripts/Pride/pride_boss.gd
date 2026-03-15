@@ -19,7 +19,7 @@ func _ready() -> void:
 	UntilCreationTimer.wait_time = rng.randf_range(1, 2)
 	ChangePosTimer.start()
 	TimeToWait.start()
-	
+
 func _on_change_pos_timeout() -> void:
 	create_tween().tween_property(self, "position", positions[randi_range(0, 4)], 2)
 
@@ -41,3 +41,17 @@ func _on_enemy_defeated():
 	queue_free()
 	
 	SceneLoader.load_scene(final_scene)
+
+
+func _on_pride_boss_death() -> void:
+	self.AnimationPlayer2.play("DEATH")
+	
+	await self.AnimationPlayer2.animation_finished
+	
+	queue_free()
+	
+	SceneLoader.load_scene(final_scene)	
+
+func _on_player_defeated():
+	print("dead")
+	queue_free()

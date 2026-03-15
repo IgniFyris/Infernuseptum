@@ -186,7 +186,7 @@ one_shot = true
 autostart = true
 
 [node name="TimeToWait" type="Timer" parent="." unique_id=531584701]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 one_shot = true
 
 [connection signal="timeout" from="ChangePos" to="." method="_on_change_pos_timeout"]

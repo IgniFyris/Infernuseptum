@@ -1,6 +1,7 @@
 extends Node2D
 
 signal BossDeath
+signal PlayerDeath
 
 @onready var Player = $Player
 
@@ -18,6 +19,8 @@ signal BossDeath
 @onready var HeavenBlocks = $"Heaven?/HeavenBlocks"
 
 @onready var orbs = $PrideLevel/Orbs
+
+@onready var MusicPlayer = $AudioStreamPlayer2D
 
 var orbs_scene : PackedScene = preload("res://Scenes/Pride/Porbs.tscn") 
 var boss : PackedScene = preload("res://Scenes/Pride/PRIDE_BOSS.tscn") 
@@ -83,9 +86,8 @@ func _process(_delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is PPlayer:
-		body.dead = true
-		body.WPlayerAnim.play("death")
-		SceneLoader.load_scene(death_scene)
+		body.other_dead = true
+		Acid.set_deferred("monitoring", false) 
 
 func _on_player_boss_start() -> void:
 	PrideLevel.visible = true
@@ -97,3 +99,13 @@ func _on_player_boss_start() -> void:
 	get_tree().get_root().add_child(BossScene)
 	BossScene.z_index = 100
 	self.BossDeath.connect(Callable(BossScene, "_on_enemy_defeated"))
+	MusicPlayer.play()
+
+func _on_audio_stream_player_2d_finished() -> void:
+	MusicPlayer.play()
+
+func _on_player_player_death() -> void:
+	if not PlayerDeath.is_connected(Callable(BossScene, "_on_player_defeated")):
+		self.PlayerDeath.connect(Callable(BossScene, "_on_player_defeated"))
+	
+	PlayerDeath.emit()
