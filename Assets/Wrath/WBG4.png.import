@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dalvxcmnoopkq"
-path="res://.godot/imported/GLBG.png-af42c0dadebe0a3e240e116d616a207f.ctex"
+uid="uid://ds360ry6xkmf"
+path="res://.godot/imported/WBG4.png-c6e8d40376b3471d44fadf230da3d743.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gluttony/GLBG.png"
-dest_files=["res://.godot/imported/GLBG.png-af42c0dadebe0a3e240e116d616a207f.ctex"]
+source_file="res://Assets/Wrath/WBG4.png"
+dest_files=["res://.godot/imported/WBG4.png-c6e8d40376b3471d44fadf230da3d743.ctex"]
 
 [params]
 

@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://cu41n0y3n0w24"]
+
+[ext_resource type="Script" uid="uid://d1sdtov3y74tq" path="res://Scripts/Gluttony/gl_bubble.gd" id="1_6acq1"]
+[ext_resource type="Texture2D" uid="uid://65u18gm5tahk" path="res://Assets/Gluttony/GLBubble.png" id="1_yqy03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6acq1"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_5prft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Area2D:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yqy03"]
+resource_name = "pop"
+length = 1.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16), Rect2(18, 0, 16, 16), Rect2(38, 0, 16, 16), Rect2(57, 0, 16, 16), Rect2(79, 0, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tigs4"]
+_data = {
+&"RESET": SubResource("Animation_5prft"),
+&"pop": SubResource("Animation_yqy03")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5akgq"]
+size = Vector2(16, 18)
+
+[node name="Bubble" type="Node2D" unique_id=1608506349 node_paths=PackedStringArray("BubbleAnim")]
+script = ExtResource("1_6acq1")
+BubbleAnim = NodePath("AnimatableBody2D/AnimationPlayer")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1650156260]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=236425576]
+shape = SubResource("RectangleShape2D_6acq1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D" unique_id=1337625988]
+libraries/ = SubResource("AnimationLibrary_tigs4")
+autoplay = &"pop"
+speed_scale = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=180095073]
+visible = false
+texture = ExtResource("1_yqy03")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1637168297]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1436661151]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_5akgq")
+
+[node name="UntilPopTimer" type="Timer" parent="." unique_id=787339341]
+wait_time = 0.15
+one_shot = true
+
+[node name="UntilReformTimer" type="Timer" parent="." unique_id=333548739]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="UntilPopTimer" to="." method="_on_until_pop_timer_timeout"]
+[connection signal="timeout" from="UntilReformTimer" to="." method="_on_until_reform_timer_timeout"]

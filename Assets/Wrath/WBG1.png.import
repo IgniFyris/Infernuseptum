@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfsago8ek037p"
-path="res://.godot/imported/WBG.png-fa921aa2927cf8e10dbcc5e00887cae8.ctex"
+uid="uid://o8hdyljwslfr"
+path="res://.godot/imported/WBG1.png-3055ef6c69c395299fb66575ccccd371.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Wrath/WBG.png"
-dest_files=["res://.godot/imported/WBG.png-fa921aa2927cf8e10dbcc5e00887cae8.ctex"]
+source_file="res://Assets/Wrath/WBG1.png"
+dest_files=["res://.godot/imported/WBG1.png-3055ef6c69c395299fb66575ccccd371.ctex"]
 
 [params]
 

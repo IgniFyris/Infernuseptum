@@ -136,10 +136,9 @@ _data = {
 radius = 4.8582993
 height = 24.477734
 
-[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("GLPlayerAnim")]
+[node name="Player" type="CharacterBody2D" unique_id=1995535131]
 scale = Vector2(1.235, 1.235)
 script = ExtResource("1_fqbti")
-GLPlayerAnim = NodePath("AnimationAgent/PlayerAnim")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
 position = Vector2(2.48, -14.8)
@@ -147,12 +146,8 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 
-[node name="AnimationAgent" type="Node2D" parent="." unique_id=1727452803 node_paths=PackedStringArray("Player", "PlayerAnim", "Sprite")]
+[node name="AnimationAgent" type="Node2D" parent="." unique_id=1727452803]
 script = ExtResource("2_fqbti")
-Player = NodePath("..")
-PlayerAnim = NodePath("PlayerAnim")
-Sprite = NodePath("Sprite2D")
-death_scene = "uid://br7ao02pl5e7w"
 
 [node name="PlayerAnim" type="AnimationPlayer" parent="AnimationAgent" unique_id=1270204312]
 libraries/ = SubResource("AnimationLibrary_qvhrl")

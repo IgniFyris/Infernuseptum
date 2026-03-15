@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b8jvr1s4p8l81"]
+
+[ext_resource type="Script" uid="uid://sk1d2sx1ohxb" path="res://Scripts/Gluttony/glmove_plats_side.gd" id="1_6uvpp"]
+[ext_resource type="Texture2D" uid="uid://dauslggkim6go" path="res://Assets/Gluttony/GLMovePlats.png" id="1_c3s2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_takxr"]
+size = Vector2(35, 4)
+
+[sub_resource type="Animation" id="Animation_5prft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_takxr"]
+resource_name = "move"
+length = 6.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 0), Vector2(50, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tigs4"]
+_data = {
+&"RESET": SubResource("Animation_5prft"),
+&"move": SubResource("Animation_takxr")
+}
+
+[node name="GLmMovePlats" type="Node2D" unique_id=1608506349 node_paths=PackedStringArray("Anim")]
+script = ExtResource("1_6uvpp")
+Anim = NodePath("AnimatableBody2D/AnimationPlayer")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1650156260]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=236425576]
+position = Vector2(23.5, 5)
+shape = SubResource("RectangleShape2D_takxr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1755330615]
+position = Vector2(25, 8)
+shape = SubResource("RectangleShape2D_takxr")
+
+[node name="TextureRect" type="TextureRect" parent="AnimatableBody2D" unique_id=691211581]
+offset_top = -1.0
+offset_right = 48.0
+offset_bottom = 15.0
+texture = ExtResource("1_c3s2s")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D" unique_id=1337625988]
+libraries/ = SubResource("AnimationLibrary_tigs4")
+
+[node name="TimetoStart" type="Timer" parent="." unique_id=982242396]
+one_shot = true
+
+[connection signal="timeout" from="TimetoStart" to="." method="_on_timeto_start_timeout"]
