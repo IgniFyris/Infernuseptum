@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://m53l5n7jt87e"]
+[gd_scene format=3 uid="uid://d2855o6ayx1nk"]
 
-[ext_resource type="Script" uid="uid://c7x23o2gr3awo" path="res://Scenes/Wrath/wcrawler.gd" id="1_3iaw8"]
-[ext_resource type="Texture2D" uid="uid://b0io5r8i2vrf7" path="res://Assets/Wrath/WCrawler.png" id="1_hs14w"]
-[ext_resource type="Script" uid="uid://dhjh2yiuqu1mg" path="res://Scripts/Wrath/wrath_zone.gd" id="2_0l08q"]
-[ext_resource type="Script" uid="uid://rvgpmihfoamm" path="res://Scripts/Wrath/death_zone.gd" id="2_6yl8p"]
+[ext_resource type="Texture2D" uid="uid://cvlbt5ei638ut" path="res://Assets/Wrath/WFlyer.png" id="1_ahoa0"]
+[ext_resource type="Script" uid="uid://dbh1ciyar5e1" path="res://Scripts/Wrath/wflyer.gd" id="1_erdg2"]
+[ext_resource type="Script" uid="uid://dhjh2yiuqu1mg" path="res://Scripts/Wrath/wrath_zone.gd" id="2_erdg2"]
+[ext_resource type="Script" uid="uid://rvgpmihfoamm" path="res://Scripts/Wrath/death_zone.gd" id="3_aofcq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hs14w"]
 radius = 8.0
 height = 40.0
 
-[sub_resource type="Animation" id="Animation_0l08q"]
+[sub_resource type="Animation" id="Animation_erdg2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -21,12 +21,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(117.684265, 0, 32.390045, 64)]
+"values": [Rect2(38, 0, 40.015, 64)]
 }
 
-[sub_resource type="Animation" id="Animation_3iaw8"]
-resource_name = "crawler_anim"
-length = 0.5
+[sub_resource type="Animation" id="Animation_aofcq"]
+resource_name = "flyer_anim"
 loop_mode = 1
 step = 0.25
 tracks/0/type = "value"
@@ -36,48 +35,48 @@ tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Rect2(117.684265, 0, 32.390045, 64), Rect2(166.154, 0, 32.39, 64), Rect2(166.154, 0, 32.39, 64)]
+"values": [Rect2(38, 0, 40.015, 64), Rect2(98, 0, 40.015, 64), Rect2(160, 0, 40.015, 64), Rect2(217.97, 0, 47.115, 64), Rect2(217.97, 0, 47.115, 64)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_peqsa"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_td3r3"]
 _data = {
-&"RESET": SubResource("Animation_0l08q"),
-&"crawler_anim": SubResource("Animation_3iaw8")
+&"RESET": SubResource("Animation_erdg2"),
+&"flyer_anim": SubResource("Animation_aofcq")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6yl8p"]
-radius = 87.005745
+radius = 83.00603
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0l08q"]
 radius = 9.0
 height = 42.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1424139823]
-script = ExtResource("1_3iaw8")
+[node name="Flyer" type="CharacterBody2D" unique_id=1424139823]
+script = ExtResource("1_erdg2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1311114089]
 shape = SubResource("CapsuleShape2D_hs14w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1237636947]
-texture = ExtResource("1_hs14w")
+texture = ExtResource("1_ahoa0")
 region_enabled = true
-region_rect = Rect2(117.684265, 0, 32.390045, 64)
+region_rect = Rect2(38, 0, 40.015, 64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=416461443]
-libraries/ = SubResource("AnimationLibrary_peqsa")
-autoplay = &"crawler_anim"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=499061950]
+libraries/ = SubResource("AnimationLibrary_td3r3")
+autoplay = &"flyer_anim"
 
 [node name="WrathZone" type="Area2D" parent="." unique_id=1279721462]
-script = ExtResource("2_0l08q")
+script = ExtResource("2_erdg2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WrathZone" unique_id=1352368228]
 shape = SubResource("CircleShape2D_6yl8p")
 
 [node name="DeathZone" type="Area2D" parent="." unique_id=1898321882]
-script = ExtResource("2_6yl8p")
+script = ExtResource("3_aofcq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1777855350]
 shape = SubResource("CapsuleShape2D_0l08q")
@@ -86,11 +85,11 @@ shape = SubResource("CapsuleShape2D_0l08q")
 wait_time = 0.05
 one_shot = true
 
-[node name="BackwardsTimer" type="Timer" parent="." unique_id=384195511]
+[node name="BackwardsTimer" type="Timer" parent="." unique_id=1151441940]
 wait_time = 2.0
 one_shot = true
 
-[node name="ForwardsTimer" type="Timer" parent="." unique_id=1117443020]
+[node name="ForwardsTimer" type="Timer" parent="." unique_id=1465910095]
 wait_time = 2.0
 one_shot = true
 
@@ -99,4 +98,4 @@ one_shot = true
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="timeout" from="TimeUntilWrathAdded" to="WrathZone" method="_on_time_until_wrath_added_timeout"]
 [connection signal="timeout" from="BackwardsTimer" to="." method="_on_backwards_timer_timeout"]
-[connection signal="timeout" from="ForwardsTimer" to="." method="_on_backwards_timer_2_timeout"]
+[connection signal="timeout" from="ForwardsTimer" to="." method="_on_forwards_timer_timeout"]

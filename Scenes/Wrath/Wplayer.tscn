@@ -218,6 +218,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1022749331]
+visible = false
 
 [node name="WBar1" type="Sprite2D" parent="Camera2D/CanvasLayer" unique_id=1254358404]
 texture = ExtResource("2_ynvud")

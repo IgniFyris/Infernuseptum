@@ -6,6 +6,7 @@ class_name WPlayer
 @onready var CamTimer = $CamTimer
 @onready var CalmTimer = $CalmTimer
 @onready var Camera = $Camera2D
+@onready var Bar = $Camera2D/CanvasLayer
 
 @onready var WBar1 = $Camera2D/CanvasLayer/WBar1
 @onready var WBar2 = $Camera2D/CanvasLayer/WBar2
@@ -30,12 +31,12 @@ var dead = false
 var wrath_meter = 0
 
 func _ready() -> void:
+	Bar.visible = false
 	Camera.enabled = false
 	CamTimer.start()
 
 func _physics_process(delta):
 	if not dead:
-		print(wrath_meter)
 		velocity.y += gravityget() * delta
 
 		# Handle jump.
@@ -59,10 +60,9 @@ func _physics_process(delta):
 		if was_on_floor and not is_on_floor():
 			CoyoteTimer.start()
 			
-		if (Input.is_action_pressed("calm") and wrath_meter != 0) and CalmTimer.is_stopped():
+		if ((Input.is_action_pressed("calm") and wrath_meter != 0) and CalmTimer.is_stopped()) and not (abs(self.velocity.x) != 0.0 or self.velocity.y < 0.0):
 			CalmTimer.start()
 			wrath_meter -= 1
-			print("hi")
 			
 		#WRATH STUFF
 		if wrath_meter == 0:
@@ -86,13 +86,13 @@ func _physics_process(delta):
 			WBar3.visible = false
 			WBar4.visible = true
 		elif wrath_meter == 100:
+			dead = true
 			WPlayerAnim.play("death")
 			SceneLoader.load_scene(death_scene)
-			
-		
 	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 	
 func _on_cam_timer_timeout() -> void:
 	Camera.enabled = true
+	Bar.visible = true

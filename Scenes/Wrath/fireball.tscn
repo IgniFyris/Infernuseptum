@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://kv8214md75ax"]
+
+[ext_resource type="Script" uid="uid://dmcj0fudweu6f" path="res://Scripts/Wrath/fireball.gd" id="1_wt34q"]
+[ext_resource type="Texture2D" uid="uid://cinbyih32q055" path="res://Assets/Wrath/WFireball.png" id="2_tcked"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhrtk"]
+radius = 12.0415945
+
+[sub_resource type="Animation" id="Animation_wt34q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(21, 0, 48, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tcked"]
+resource_name = "die"
+length = 1.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(133.53, 0, 48, 48), Rect2(184.145, 0, 48, 48), Rect2(234.22, 0, 48, 48), Rect2(283.935, 0, 48, 48), Rect2(334.465, 0, 48, 48), Rect2(368.99, 0, 48, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bhrtk"]
+resource_name = "shoot"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(21, 0, 48, 48), Rect2(72, 0, 48, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orijl"]
+_data = {
+&"RESET": SubResource("Animation_wt34q"),
+&"die": SubResource("Animation_tcked"),
+&"shoot": SubResource("Animation_bhrtk")
+}
+
+[node name="fireball" type="Area2D" unique_id=1942359909]
+script = ExtResource("1_wt34q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=479694444]
+visible = false
+texture = ExtResource("2_tcked")
+region_enabled = true
+region_rect = Rect2(21, 0, 48, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=263385343]
+position = Vector2(5, 1)
+shape = SubResource("CircleShape2D_bhrtk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=45836724]
+libraries/ = SubResource("AnimationLibrary_orijl")
+autoplay = &"shoot"
+speed_scale = 2.0
+
+[node name="UntilReform" type="Timer" parent="." unique_id=882455237]
+one_shot = true
+
+[node name="FlyThrough" type="Timer" parent="." unique_id=1570584668]
+wait_time = 0.009999999999999998
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="UntilReform" to="." method="_on_until_reform_timeout"]
+[connection signal="timeout" from="FlyThrough" to="." method="_on_fly_through_timeout"]
