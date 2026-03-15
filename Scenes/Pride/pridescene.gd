@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var Portal = $Portal
+signal BossDeath
+
 @onready var Player = $Player
 
 @onready var Bar1 = $PrideLevel/BossBar/Sprite2D
@@ -10,67 +11,89 @@ extends Node2D
 @onready var Bar5 = $PrideLevel/BossBar/Sprite2D5
 @onready var Bar6 = $PrideLevel/BossBar/Sprite2D6
 
+@onready var PrideLevel = $PrideLevel
+@onready var PrideBlocks = $PrideLevel/PrideBlocks
+@onready var Acid = $PrideLevel/PrideBlocks/Area2D
+@onready var Heaven = $"Heaven?"
+@onready var HeavenBlocks = $"Heaven?/HeavenBlocks"
+
 @onready var orbs = $PrideLevel/Orbs
 
 var orbs_scene : PackedScene = preload("res://Scenes/Pride/Porbs.tscn") 
+var boss : PackedScene = preload("res://Scenes/Pride/PRIDE_BOSS.tscn") 
+var BossScene
+var boss_dead = false
 @export var death_scene: StringName = &""
 
 func _ready() -> void:
-	Portal.monitoring = false
-	Portal.visible = false
+	pass
 
 func _process(_delta: float) -> void:
-	if Player.pride_meter == 0:
-		Bar1.visible = true
-		Bar2.visible = false
-		Bar3.visible = false
-		Bar4.visible = false
-		Bar5.visible = false
-		Bar6.visible = false
-	if Player.pride_meter == 1:
-		Bar1.visible = false
-		Bar2.visible = true
-		Bar3.visible = false
-		Bar4.visible = false
-		Bar5.visible = false
-		Bar6.visible = false
-	if Player.pride_meter == 2:
-		Bar1.visible = false
-		Bar2.visible = false
-		Bar3.visible = true
-		Bar4.visible = false
-		Bar5.visible = false
-		Bar6.visible = false
-	if Player.pride_meter == 3:
-		Bar1.visible = false
-		Bar2.visible = false
-		Bar3.visible = false
-		Bar4.visible = true
-		Bar5.visible = false
-		Bar6.visible = false
-	if Player.pride_meter == 4:
-		Bar1.visible = false
-		Bar2.visible = false
-		Bar3.visible = false
-		Bar4.visible = false
-		Bar5.visible = true
-		Bar6.visible = false
-	if Player.pride_meter == 5:
-		Bar1.visible = false
-		Bar2.visible = false
-		Bar3.visible = false
-		Bar4.visible = false
-		Bar5.visible = false
-		Bar6.visible = true
+	if not boss_dead:
+		if Player.pride_meter == 0:
+			Bar1.visible = true
+			Bar2.visible = false
+			Bar3.visible = false
+			Bar4.visible = false
+			Bar5.visible = false
+			Bar6.visible = false
+		if Player.pride_meter == 1:
+			Bar1.visible = false
+			Bar2.visible = true
+			Bar3.visible = false
+			Bar4.visible = false
+			Bar5.visible = false
+			Bar6.visible = false
+		if Player.pride_meter == 2:
+			Bar1.visible = false
+			Bar2.visible = false
+			Bar3.visible = true
+			Bar4.visible = false
+			Bar5.visible = false
+			Bar6.visible = false
+		if Player.pride_meter == 3:
+			Bar1.visible = false
+			Bar2.visible = false
+			Bar3.visible = false
+			Bar4.visible = true
+			Bar5.visible = false
+			Bar6.visible = false
+		if Player.pride_meter == 4:
+			Bar1.visible = false
+			Bar2.visible = false
+			Bar3.visible = false
+			Bar4.visible = false
+			Bar5.visible = true
+			Bar6.visible = false
+		if Player.pride_meter == 5:
+			boss_dead = true
+			Bar1.visible = false
+			Bar2.visible = false
+			Bar3.visible = false
+			Bar4.visible = false
+			Bar5.visible = false
+			Bar6.visible = true
+			
+			BossDeath.emit()
 		
 	if orbs.get_child_count() != 1:
 		var POrbs = orbs_scene.instantiate()
 		orbs.add_child(POrbs)
 		POrbs.z_index = 90
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is PPlayer:
 		body.dead = true
 		body.WPlayerAnim.play("death")
 		SceneLoader.load_scene(death_scene)
+
+func _on_player_boss_start() -> void:
+	PrideLevel.visible = true
+	PrideBlocks.enabled = true
+	Acid.monitoring = true
+	Heaven.visible = false
+	HeavenBlocks.enabled = false
+	BossScene = boss.instantiate()
+	get_tree().get_root().add_child(BossScene)
+	BossScene.z_index = 100
+	self.BossDeath.connect(Callable(BossScene, "_on_enemy_defeated"))

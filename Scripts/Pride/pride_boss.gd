@@ -3,6 +3,9 @@ extends Node2D
 @onready var ChangePosTimer = $ChangePos
 @onready var UntilCreationTimer = $UntilCreationTimer
 @onready var TimeToWait = $TimeToWait
+@onready var AnimationPlayer2 = $AnimationPlayer2
+
+@export var final_scene : StringName = &""
 
 var star : PackedScene = preload("res://Scenes/Pride/star.tscn") 
 
@@ -10,6 +13,7 @@ var positions = [Vector2(636, 153), Vector2(894, 153), Vector2(1126.8, 153), Vec
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	self.visible = true
 	self.position = positions[0]
 	ChangePosTimer.wait_time = rng.randf_range(1, 2)
 	UntilCreationTimer.wait_time = rng.randf_range(1, 2)
@@ -28,3 +32,12 @@ func _on_until_creation_timer_timeout() -> void:
 	StarScene.z_index = 90
 	StarScene.position = self.position
 	TimeToWait.start()
+
+func _on_enemy_defeated():
+	self.AnimationPlayer2.play("DEATH")
+	
+	await self.AnimationPlayer2.animation_finished
+	
+	queue_free()
+	
+	SceneLoader.load_scene(final_scene)

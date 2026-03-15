@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PPlayer
 
+signal BossStart
+
 @onready var CoyoteTimer = $CoyoteTimer
 @onready var JumpBufferTimer = $JumpBufferTimer
 @onready var CamTimer = $CamTimer
@@ -23,10 +25,13 @@ class_name PPlayer
 
 @export var death_scene: StringName = &""
 @export var WPlayerAnim : AnimationPlayer
+@export var FlashAnim : AnimationPlayer
+
 
 var speed_multipilier = 30
 var direction = 0
 var dead = false
+var in_cutscene = false
 
 var pride_meter = 0
 var life = 3
@@ -34,12 +39,13 @@ var color = [Color(0.558, 0.558, 0.558, 1.0),  Color(0.899, 0.81, 0.168, 1.0), C
 var num = 0
 
 func _ready() -> void:
+	HFull.visible = false
+	ColorFilter.visible = false
 	Camera.enabled = false
 	CamTimer.start()
-	ChangeColorTimer.start()
 
 func _physics_process(delta):
-	if not dead:
+	if not dead and not in_cutscene:
 		velocity.y += gravityget() * delta
 
 		# Handle jump.
@@ -76,7 +82,7 @@ func _physics_process(delta):
 			HFull.visible = false
 			HHalf.visible = true
 			HEmpty.visible = false
-		elif life == 1:
+		elif life == 0:
 			HFull.visible = false
 			HHalf.visible = false
 			HEmpty.visible = true
@@ -104,3 +110,17 @@ func _on_change_color_timer_timeout() -> void:
 	await tween.finished
 	
 	ChangeColorTimer.start()
+
+func _on_bait_cutscene_done() -> void:
+	BossStart.emit()
+	FlashAnim.play("flash")
+	
+	await FlashAnim.animation_finished
+	
+	HFull.visible = true
+	ChangeColorTimer.start()
+	ColorFilter.visible = true
+
+func _on_pride_boss_death() -> void:
+	WPlayerAnim.stop()
+	in_cutscene = true

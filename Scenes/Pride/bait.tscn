@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://rwkest05ddh"]
+
+[ext_resource type="Script" uid="uid://isubp1yp52yd" path="res://Scripts/Pride/bait.gd" id="1_6vbhd"]
+[ext_resource type="Texture2D" uid="uid://dvk80pw4141d3" path="res://Assets/Pride/BaitAnim.png" id="1_wclgx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6vbhd"]
+
+[sub_resource type="Animation" id="Animation_fnq0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(-16.775, 0, 250, 250)]
+}
+
+[sub_resource type="Animation" id="Animation_wieca"]
+resource_name = "transform"
+length = 4.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.75, 4, 4.25, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(-16.775, 0, 250, 250), Rect2(137.96, 0, 250, 250), Rect2(311.81, 0, 250, 250), Rect2(551.065, 0, 250, 250), Rect2(816.525, 0, 250, 250), Rect2(1098.115, 0, 250, 250), Rect2(1394.63, 0, 250, 250), Rect2(1669.93, 0, 250, 250), Rect2(1927.685, 0, 250, 250), Rect2(2178.02, 0, 250, 250), Rect2(2439.95, 0, 250, 250), Rect2(2717.12, 0, 250, 250), Rect2(3004.07, 0, 250, 250), Rect2(3277.22, 0, 250, 250), Rect2(3542.105, 0, 250, 250), Rect2(3807.59, 0, 250, 250), Rect2(4071.475, 0, 250, 250), Rect2(4337.09, 0, 250, 250)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ad0ix"]
+_data = {
+&"RESET": SubResource("Animation_fnq0k"),
+&"transform": SubResource("Animation_wieca")
+}
+
+[node name="Area2D" type="Area2D" unique_id=955083866 node_paths=PackedStringArray("BaitAnim")]
+script = ExtResource("1_6vbhd")
+BaitAnim = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=301990467]
+position = Vector2(1, -84)
+texture = ExtResource("1_wclgx")
+region_enabled = true
+region_rect = Rect2(-16.775, 0, 250, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1994901547]
+shape = SubResource("CapsuleShape2D_6vbhd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1240926475]
+libraries/ = SubResource("AnimationLibrary_ad0ix")
+speed_scale = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://8qf8wccg8f37"]
+
+[ext_resource type="Texture2D" uid="uid://b3uodxi778jdt" path="res://Assets/Pride/GoodEndingTempt.png" id="1_g6vn5"]
+[ext_resource type="Texture2D" uid="uid://dgj4uajgn3ct8" path="res://Assets/Pride/ENDINGBG.png" id="2_g6vn5"]
+[ext_resource type="Texture2D" uid="uid://b2vjjetmeokr2" path="res://Assets/Pride/GoodEnding.png" id="2_yu0qq"]
+
+[node name="GoodEnding" type="Node2D" unique_id=1305626840]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=830711103]
+z_index = 20
+texture = ExtResource("1_g6vn5")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1295737571]
+z_index = 20
+texture = ExtResource("2_yu0qq")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1997378271]
+modulate = Color(1, 1, 1, 0.7294118)
+z_index = -10
+texture = ExtResource("2_g6vn5")
+centered = false

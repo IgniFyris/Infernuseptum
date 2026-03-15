@@ -21,6 +21,57 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-20, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OtherSins2/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OtherSins2/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0hxxa"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../OtherSins2/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OtherSins2/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_qvhrl"]
 resource_name = "shake"
@@ -42,6 +93,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7e0v4"]
 _data = {
 &"RESET": SubResource("Animation_ms1eb"),
+&"flash": SubResource("Animation_0hxxa"),
 &"shake": SubResource("Animation_qvhrl")
 }
 
@@ -177,11 +229,12 @@ _data = {
 radius = 4.8582993
 height = 24.477734
 
-[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("WPlayerAnim")]
+[node name="Player" type="CharacterBody2D" unique_id=1995535131 node_paths=PackedStringArray("WPlayerAnim", "FlashAnim")]
 scale = Vector2(1.235, 1.235)
 script = ExtResource("1_tygmq")
 death_scene = &"uid://br7ao02pl5e7w"
 WPlayerAnim = NodePath("AnimationAgent/PlayerAnim")
+FlashAnim = NodePath("Camera2D/OtherSins2/Flash")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1606562820]
 position = Vector2(2.48, -14.8)
@@ -240,9 +293,6 @@ grow_vertical = 0
 texture = ExtResource("4_ax480")
 expand_mode = 1
 
-[node name="BagAnim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=434021840]
-libraries/ = SubResource("AnimationLibrary_7e0v4")
-
 [node name="OtherSins" type="CanvasLayer" parent="Camera2D" unique_id=341053046]
 offset = Vector2(-20, 0)
 transform = Transform2D(1, 0, 0, 1, -20, 0)
@@ -257,6 +307,25 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9843137, 0.6392157, 0, 1)
+
+[node name="OtherSins2" type="CanvasLayer" parent="Camera2D" unique_id=1616299445]
+offset = Vector2(-20, 0)
+transform = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/OtherSins2" unique_id=78396173]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9843137, 1, 0, 1)
+
+[node name="Flash" type="AnimationPlayer" parent="Camera2D/OtherSins2" unique_id=434021840]
+root_node = NodePath("../../CanvasLayer")
+libraries/ = SubResource("AnimationLibrary_7e0v4")
 
 [node name="AnimationAgent" type="Node2D" parent="." unique_id=1727452803 node_paths=PackedStringArray("Player", "PlayerAnim", "Sprite")]
 script = ExtResource("3_v10h1")
