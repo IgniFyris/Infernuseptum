@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://vcyrlgn5h4ek"]
+
+[ext_resource type="Script" uid="uid://yuournaq5mwk" path="res://Scripts/Pride/star.gd" id="1_0ivr7"]
+[ext_resource type="Texture2D" uid="uid://cg8y444ou5r33" path="res://Assets/Pride/PrideStar.png" id="2_8w4ko"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8v0r"]
+radius = 11.18034
+
+[node name="Area2D" type="Area2D" unique_id=1970680402]
+script = ExtResource("1_0ivr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667114219]
+shape = SubResource("CircleShape2D_l8v0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1238953187]
+texture = ExtResource("2_8w4ko")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

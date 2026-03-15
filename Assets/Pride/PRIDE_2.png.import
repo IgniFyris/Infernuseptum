@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do4glvt1sd4nb"
-path="res://.godot/imported/BACKGROUNDS_20260307184927.png-5e8a85fa318fdb5d6b8436e72ee98037.ctex"
+uid="uid://k3u2l0h7uv4m"
+path="res://.godot/imported/PRIDE_2.png-7f618f703748072b4118a8e5de33d24f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Pride/BACKGROUNDS_20260307184927.png"
-dest_files=["res://.godot/imported/BACKGROUNDS_20260307184927.png-5e8a85fa318fdb5d6b8436e72ee98037.ctex"]
+source_file="res://Assets/Pride/PRIDE_2.png"
+dest_files=["res://.godot/imported/PRIDE_2.png-7f618f703748072b4118a8e5de33d24f.ctex"]
 
 [params]
 

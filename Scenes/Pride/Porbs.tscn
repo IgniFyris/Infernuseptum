@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cjceu7krcd06i"]
+
+[ext_resource type="Script" uid="uid://q8mgcwmktuky" path="res://Scripts/Pride/porbs.gd" id="1_8gw27"]
+[ext_resource type="Texture2D" uid="uid://uke4b1wsl5jo" path="res://Assets/Pride/POrbs.png" id="1_don0b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gw27"]
+radius = 16.03122
+
+[sub_resource type="Animation" id="Animation_vlo77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(-0.795, 0, 30.735, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_lqe0m"]
+resource_name = "orbs_anim"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(-0.795, 0, 30.735, 32), Rect2(29.105, 0, 31.55, 32), Rect2(62.22, 0, 31.55, 32), Rect2(95.26, 0, 31.55, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75hjt"]
+_data = {
+&"RESET": SubResource("Animation_vlo77"),
+&"orbs_anim": SubResource("Animation_lqe0m")
+}
+
+[node name="Porbs" type="Area2D" unique_id=981191681]
+visible = false
+monitoring = false
+script = ExtResource("1_8gw27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983290729]
+shape = SubResource("CircleShape2D_8gw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360556434]
+texture = ExtResource("1_don0b")
+region_enabled = true
+region_rect = Rect2(-0.795, 0, 30.735, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=526270502]
+libraries/ = SubResource("AnimationLibrary_75hjt")
+autoplay = &"orbs_anim"
+speed_scale = 1.5
+
+[node name="UntilShow" type="Timer" parent="." unique_id=1201548459]
+one_shot = true
+
+[node name="UntilHide" type="Timer" parent="." unique_id=1574569415]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="UntilShow" to="." method="_on_until_show_timeout"]
+[connection signal="timeout" from="UntilHide" to="." method="_on_until_hide_timeout"]

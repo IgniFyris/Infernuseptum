@@ -5,6 +5,12 @@ class_name PPlayer
 @onready var JumpBufferTimer = $JumpBufferTimer
 @onready var CamTimer = $CamTimer
 @onready var Camera = $Camera2D
+@onready var ChangeColorTimer = $ChangeColorTimer
+@onready var ColorFilter = $Camera2D/OtherSins/ColorRect
+
+@onready var HFull = $Camera2D/CanvasLayer/TextureRect
+@onready var HHalf = $Camera2D/CanvasLayer/TextureRect2
+@onready var HEmpty = $Camera2D/CanvasLayer/TextureRect3
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -16,14 +22,21 @@ class_name PPlayer
 @export var jump_time_to_descent : float = 0.19
 
 @export var death_scene: StringName = &""
+@export var WPlayerAnim : AnimationPlayer
 
 var speed_multipilier = 30
 var direction = 0
 var dead = false
 
+var pride_meter = 0
+var life = 3
+var color = [Color(0.558, 0.558, 0.558, 1.0),  Color(0.899, 0.81, 0.168, 1.0), Color(1.0, 0.521, 0.724, 1.0), Color(0.776, 0.364, 0.923, 1.0), Color(0.479, 0.802, 0.254, 1.0), Color(0.843, 0.112, 0.0, 1.0),]
+var num = 0
+
 func _ready() -> void:
 	Camera.enabled = false
 	CamTimer.start()
+	ChangeColorTimer.start()
 
 func _physics_process(delta):
 	if not dead:
@@ -49,6 +62,28 @@ func _physics_process(delta):
 		
 		if was_on_floor and not is_on_floor():
 			CoyoteTimer.start()
+			
+		#PRIDEE
+		if life == 3:
+			HFull.visible = true
+			HHalf.visible = false
+			HEmpty.visible = false
+		elif life == 2:
+			HFull.visible = false
+			HHalf.visible = true
+			HEmpty.visible = false
+		elif life == 1:
+			HFull.visible = false
+			HHalf.visible = true
+			HEmpty.visible = false
+		elif life == 1:
+			HFull.visible = false
+			HHalf.visible = false
+			HEmpty.visible = true
+			
+			dead = true
+			WPlayerAnim.play("death")
+			SceneLoader.load_scene(death_scene)
 	
 func gravityget() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
@@ -56,3 +91,16 @@ func gravityget() -> float:
 func _on_cam_timer_timeout() -> void:
 	#Camera.enabled = true
 	pass
+
+func _on_change_color_timer_timeout() -> void:
+	if num < 5:
+		num += 1
+	else:
+		num = 0
+		
+	ColorFilter.visible = true
+	var tween = create_tween().tween_property(ColorFilter, "color", color[num], 3)
+	
+	await tween.finished
+	
+	ChangeColorTimer.start()
