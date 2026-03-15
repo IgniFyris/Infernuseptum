@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://m53l5n7jt87e"]
+
+[ext_resource type="Texture2D" uid="uid://b0io5r8i2vrf7" path="res://Assets/Wrath/WCrawler.png" id="1_hs14w"]
+[ext_resource type="Script" uid="uid://dhjh2yiuqu1mg" path="res://Scripts/Wrath/wrath_zone.gd" id="2_0l08q"]
+[ext_resource type="Script" uid="uid://rvgpmihfoamm" path="res://Scripts/Wrath/death_zone.gd" id="2_6yl8p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hs14w"]
+radius = 8.0
+height = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6yl8p"]
+radius = 59.03389
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0l08q"]
+radius = 8.0
+height = 40.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1424139823]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1311114089]
+shape = SubResource("CapsuleShape2D_hs14w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1237636947]
+texture = ExtResource("1_hs14w")
+region_enabled = true
+region_rect = Rect2(117.684265, 0, 32.390045, 64)
+
+[node name="WrathZone" type="Area2D" parent="." unique_id=1279721462]
+script = ExtResource("2_0l08q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrathZone" unique_id=1352368228]
+shape = SubResource("CircleShape2D_6yl8p")
+
+[node name="DeathZone" type="Area2D" parent="." unique_id=1898321882]
+script = ExtResource("2_6yl8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1777855350]
+shape = SubResource("CapsuleShape2D_0l08q")
+
+[node name="TimeUntilWrathAdded" type="Timer" parent="." unique_id=638323014]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="body_entered" from="WrathZone" to="WrathZone" method="_on_body_entered"]
+[connection signal="body_exited" from="WrathZone" to="WrathZone" method="_on_body_exited"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
+[connection signal="timeout" from="TimeUntilWrathAdded" to="WrathZone" method="_on_time_until_wrath_added_timeout"]

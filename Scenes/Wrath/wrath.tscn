@@ -5,15 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://b1m6shhguqfl8" path="res://Assets/Wrath/WBG2.png" id="2_t8vda"]
 [ext_resource type="Texture2D" uid="uid://bf7kx0klhvcym" path="res://Assets/Wrath/WBG3.png" id="3_pogdr"]
 [ext_resource type="Texture2D" uid="uid://ds360ry6xkmf" path="res://Assets/Wrath/WBG4.png" id="4_mbqim"]
+[ext_resource type="Texture2D" uid="uid://bomgeju0ti2no" path="res://Assets/Wrath/WBG5.png" id="5_mbqim"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="5_pogdr"]
 [ext_resource type="PackedScene" uid="uid://cbn0iex3qa3hh" path="res://Scenes/Wrath/Wplayer.tscn" id="6_j8hw3"]
+[ext_resource type="PackedScene" uid="uid://m53l5n7jt87e" path="res://Scenes/Wrath/wcrawler.tscn" id="8_t8vda"]
 
 [sub_resource type="Animation" id="Animation_j8hrp"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WBG1:visible")
+tracks/0/path = NodePath("WBar1:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WBG2:visible")
+tracks/1/path = NodePath("WBar2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +39,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WBG3:visible")
+tracks/2/path = NodePath("WBar3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,10 +51,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("WBG4:visible")
+tracks/3/path = NodePath("WBar4:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WBar5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -66,7 +80,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WBG1:visible")
+tracks/0/path = NodePath("WBar1:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WBG2:visible")
+tracks/1/path = NodePath("WBar2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,7 +104,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WBG3:visible")
+tracks/2/path = NodePath("WBar3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -102,11 +116,23 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("WBG4:visible")
+tracks/3/path = NodePath("WBar4:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WBar5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -159,24 +185,29 @@ sources/0 = SubResource("TileSetAtlasSource_mbqim")
 
 [node name="BGAnim" type="Node2D" parent="." unique_id=494285753]
 
-[node name="WBG1" type="Sprite2D" parent="BGAnim" unique_id=293615612]
+[node name="WBar1" type="Sprite2D" parent="BGAnim" unique_id=293615612]
 position = Vector2(640, 360)
 texture = ExtResource("1_bf5gj")
 
-[node name="WBG2" type="Sprite2D" parent="BGAnim" unique_id=2036030862]
+[node name="WBar2" type="Sprite2D" parent="BGAnim" unique_id=1506351680]
 visible = false
 position = Vector2(640, 360)
 texture = ExtResource("2_t8vda")
 
-[node name="WBG3" type="Sprite2D" parent="BGAnim" unique_id=1093162465]
+[node name="WBar3" type="Sprite2D" parent="BGAnim" unique_id=259445204]
 visible = false
 position = Vector2(640, 360)
 texture = ExtResource("3_pogdr")
 
-[node name="WBG4" type="Sprite2D" parent="BGAnim" unique_id=1925834058]
+[node name="WBar4" type="Sprite2D" parent="BGAnim" unique_id=1098386456]
 visible = false
 position = Vector2(640, 360)
 texture = ExtResource("4_mbqim")
+
+[node name="WBar5" type="Sprite2D" parent="BGAnim" unique_id=751331516]
+visible = false
+position = Vector2(640, 360)
+texture = ExtResource("5_mbqim")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BGAnim" unique_id=1078683100]
 libraries/ = SubResource("AnimationLibrary_tyrf4")
@@ -192,3 +223,6 @@ position = Vector2(30, 29)
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("6_j8hw3")]
 position = Vector2(83, 670)
+
+[node name="Crawler" parent="." unique_id=1813061375 instance=ExtResource("8_t8vda")]
+position = Vector2(353, 652)

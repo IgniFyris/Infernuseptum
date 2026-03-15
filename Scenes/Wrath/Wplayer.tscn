@@ -2,7 +2,77 @@
 
 [ext_resource type="Script" uid="uid://cc6qmo7gppi2s" path="res://Scripts/Wrath/wplayer.gd" id="1_ve8q2"]
 [ext_resource type="Script" uid="uid://chudcb7qw5nhi" path="res://Scripts/Wrath/wplayer_anim.gd" id="2_rmvfa"]
+[ext_resource type="Texture2D" uid="uid://moxunp8g17f5" path="res://Assets/Wrath/WBar1.png" id="2_ynvud"]
+[ext_resource type="Texture2D" uid="uid://c8c0hraegn6ql" path="res://Assets/Wrath/WBar2_1.png" id="3_6crjm"]
 [ext_resource type="Texture2D" uid="uid://b4vd2npdjaa1j" path="res://Assets/PlayerSprites.png" id="3_t1fdx"]
+[ext_resource type="Texture2D" uid="uid://dloqoyq82r5iy" path="res://Assets/Wrath/WBar2_2.png" id="4_ed4jq"]
+[ext_resource type="Texture2D" uid="uid://d4noe0qv4h8xd" path="res://Assets/Wrath/WBar3_1.png" id="5_ma8ce"]
+[ext_resource type="Texture2D" uid="uid://bb1aw1hwirt8m" path="res://Assets/Wrath/WBar3_2.png" id="6_o5vp3"]
+[ext_resource type="Texture2D" uid="uid://b4vuowxqpedow" path="res://Assets/Wrath/WBar4_1.png" id="7_8q521"]
+[ext_resource type="Texture2D" uid="uid://cjc0ebpf72i5v" path="res://Assets/Wrath/WBar4_2.png" id="8_fnps1"]
+
+[sub_resource type="Animation" id="Animation_ynvud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WBar2_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WBar2_2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6crjm"]
+resource_name = "anim"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WBar2_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WBar2_2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ed4jq"]
+_data = {
+&"RESET": SubResource("Animation_ynvud"),
+&"anim": SubResource("Animation_6crjm")
+}
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -147,6 +217,57 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1022749331]
+
+[node name="WBar1" type="Sprite2D" parent="Camera2D/CanvasLayer" unique_id=1254358404]
+texture = ExtResource("2_ynvud")
+centered = false
+
+[node name="WBar2" type="Node2D" parent="Camera2D/CanvasLayer" unique_id=75645510]
+
+[node name="WBar2_1" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar2" unique_id=465633858]
+texture = ExtResource("3_6crjm")
+centered = false
+
+[node name="WBar2_2" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar2" unique_id=1458751683]
+visible = false
+texture = ExtResource("4_ed4jq")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer/WBar2" unique_id=1139678112]
+libraries/ = SubResource("AnimationLibrary_ed4jq")
+autoplay = &"anim"
+
+[node name="WBar3" type="Node2D" parent="Camera2D/CanvasLayer" unique_id=773049530]
+
+[node name="WBar2_1" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar3" unique_id=1570841681]
+texture = ExtResource("5_ma8ce")
+centered = false
+
+[node name="WBar2_2" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar3" unique_id=1525130002]
+visible = false
+texture = ExtResource("6_o5vp3")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer/WBar3" unique_id=1343854009]
+libraries/ = SubResource("AnimationLibrary_ed4jq")
+autoplay = &"anim"
+
+[node name="WBar4" type="Node2D" parent="Camera2D/CanvasLayer" unique_id=640326910]
+
+[node name="WBar2_1" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar4" unique_id=299594189]
+texture = ExtResource("7_8q521")
+centered = false
+
+[node name="WBar2_2" type="Sprite2D" parent="Camera2D/CanvasLayer/WBar4" unique_id=1740658437]
+visible = false
+texture = ExtResource("8_fnps1")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer/WBar4" unique_id=1505453875]
+libraries/ = SubResource("AnimationLibrary_ed4jq")
+autoplay = &"anim"
+
 [node name="AnimationAgent" type="Node2D" parent="." unique_id=1727452803 node_paths=PackedStringArray("Player", "PlayerAnim", "Sprite")]
 script = ExtResource("2_rmvfa")
 Player = NodePath("..")
@@ -180,6 +301,10 @@ one_shot = true
 
 [node name="CamTimer" type="Timer" parent="." unique_id=1166467159]
 wait_time = 2.0
+one_shot = true
+
+[node name="CalmTimer" type="Timer" parent="." unique_id=454187915]
+wait_time = 0.05
 one_shot = true
 
 [connection signal="timeout" from="CamTimer" to="." method="_on_cam_timer_timeout"]
