@@ -83,7 +83,6 @@ func _process(_delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is OPPlayer:
 		body.other_dead = true
-		Acid.set_deferred("monitoring", false) 
 
 func _on_audio_stream_player_2d_finished() -> void:
 	MusicPlayer.play()

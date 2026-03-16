@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c652t38ntdag7" path="res://Assets/Pride/PTilesBait.png" id="2_ronmn"]
 [ext_resource type="Texture2D" uid="uid://do4glvt1sd4nb" path="res://Assets/Pride/PrideBG.png" id="4_ronmn"]
 [ext_resource type="Texture2D" uid="uid://c7mltiwhfk8oi" path="res://Assets/Pride/PTiles.png" id="5_xxoba"]
+[ext_resource type="Script" uid="uid://degkrsd16adyx" path="res://Scripts/Pride/pride_acid.gd" id="6_5tt6o"]
 [ext_resource type="PackedScene" uid="uid://dqv7j7dsspswd" path="res://Scenes/Pride/Pplayer.tscn" id="6_q82ly"]
 [ext_resource type="Texture2D" uid="uid://dvgqixqwje26i" path="res://Assets/Pride/PRIDE_1.png" id="6_skcav"]
 [ext_resource type="Texture2D" uid="uid://k3u2l0h7uv4m" path="res://Assets/Pride/PRIDE_2.png" id="7_ed315"]
@@ -14,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bdw40mbv2vyd" path="res://Assets/Pride/PRIDE_D.png" id="11_os7ec"]
 [ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="14_5tt6o"]
 [ext_resource type="PackedScene" uid="uid://rwkest05ddh" path="res://Scenes/Pride/bait.tscn" id="14_ed315"]
+[ext_resource type="AudioStream" uid="uid://tyv5eddf6o2t" path="res://Audio/SFX/phatphrogstudio-oni-demon-voice-demonic-laughter-477923.mp3" id="14_nlyq5"]
+[ext_resource type="AudioStream" uid="uid://dk17wfpmnei2f" path="res://Audio/SFX/freesound_community-transform-103819.mp3" id="15_tgie6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8mlt1"]
 texture = ExtResource("2_ronmn")
@@ -122,10 +125,13 @@ tile_set = SubResource("TileSet_ytydl")
 
 [node name="Area2D" type="Area2D" parent="PrideLevel/PrideBlocks" unique_id=770104204]
 monitoring = false
+script = ExtResource("6_5tt6o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrideLevel/PrideBlocks/Area2D" unique_id=1047033439]
 position = Vector2(319.875, 347)
 shape = SubResource("RectangleShape2D_ed315")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PrideLevel/PrideBlocks/Area2D" unique_id=384530409]
 
 [node name="BossBar" type="Node2D" parent="PrideLevel" unique_id=63001029]
 
@@ -164,15 +170,22 @@ centered = false
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("6_q82ly")]
 position = Vector2(638, 673)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player" unique_id=933787175]
+stream = ExtResource("14_nlyq5")
+
 [node name="Bait" parent="." unique_id=955083866 instance=ExtResource("14_ed315")]
 position = Vector2(640, 401)
 scale = Vector2(0.805, 0.805)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bait" unique_id=1415092615]
+stream = ExtResource("15_tgie6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1692453430]
 stream = ExtResource("14_5tt6o")
 
 [connection signal="BossDeath" from="." to="Player" method="_on_pride_boss_death"]
 [connection signal="body_entered" from="PrideLevel/PrideBlocks/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PrideLevel/PrideBlocks/Area2D" to="PrideLevel/PrideBlocks/Area2D" method="_on_body_entered"]
 [connection signal="BossStart" from="Player" to="." method="_on_player_boss_start"]
 [connection signal="PlayerDeath" from="Player" to="." method="_on_player_player_death"]
 [connection signal="CutsceneDone" from="Bait" to="Player" method="_on_bait_cutscene_done"]

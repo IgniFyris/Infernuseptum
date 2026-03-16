@@ -7,6 +7,8 @@ extends Node2D
 @onready var UntilPopTimer = $UntilPopTimer
 @onready var UntilReformTimer = $UntilReformTimer
 
+@onready var pop = $AudioStreamPlayer2D
+
 func _ready() -> void:
 	BubbleSprite.visible = true
 	BubbleCol.disabled = false
@@ -19,6 +21,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 func _on_until_pop_timer_timeout() -> void:
 	BubbleAnim.play("pop")
+	
+	pop.play()
 	
 	await BubbleAnim.animation_finished
 	

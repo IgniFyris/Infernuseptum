@@ -2,6 +2,8 @@ extends Area2D
 
 @onready var UntilShowTimer = $UntilShow
 @onready var UntilHideTimer = $UntilHide
+@onready var orb = $AudioStreamPlayer2D
+@onready var hurt = $AudioStreamPlayer2D2
 var rng = RandomNumberGenerator.new()
 
 var positions = [Vector2(57, 326), Vector2(638, 337), Vector2(431, 428), Vector2(914, 394), Vector2(1060, 330)]
@@ -22,6 +24,11 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is PPlayer or body is OPPlayer:
 		body.pride_meter += 1
+		orb.play()
+		hurt.play()
+		self.visible = false
+		self.set_deferred("monitoring", false)
+		await orb.finished and hurt.finished
 		queue_free()
 
 func _on_until_show_timeout() -> void:

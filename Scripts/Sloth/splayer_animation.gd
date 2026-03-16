@@ -7,6 +7,8 @@ extends Node2D
 @export var SlothBorderAnimPlayer : AnimationPlayer
 @export var death_scene : String = &""
 
+@onready var Sigh = get_parent().get_node("AudioStreamPlayer2D")
+
 func _process(_delta):
 	if not Player.dead:
 		if Player.direction == 1:
@@ -28,4 +30,6 @@ func _on_sloth_death_timer_timeout() -> void:
 	PlayerAnim.stop()
 	PlayerAnim.play("death")
 	SlothBorderAnimPlayer.stop()
+	Sigh.play()
+	await Sigh.finished
 	SceneLoader.load_scene(death_scene)

@@ -6,6 +6,8 @@ extends Area2D
 @onready var StayDownTimer = $StayDownTimer
 @onready var Hand = $Sprite2D
 
+@onready var Goop = $AudioStreamPlayer2D
+
 var DeathScene = "uid://br7ao02pl5e7w"
 var rng = RandomNumberGenerator.new()
 
@@ -22,6 +24,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.dead = true
 		body.PlayerAnim.stop()
 		body.PlayerAnim.play("death")
+		Goop.play()
+		await Goop.finished
 		SceneLoader.load_scene(DeathScene)
 
 func _on_grab_timer_timeout() -> void:

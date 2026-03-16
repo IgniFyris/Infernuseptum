@@ -4,6 +4,7 @@ extends Node2D
 @onready var UntilCreationTimer = $UntilCreationTimer
 @onready var TimeToWait = $TimeToWait
 @onready var AnimationPlayer2 = $AnimationPlayer2
+@onready var ded = $AudioStreamPlayer2D
 
 @export var final_scene : StringName = &""
 
@@ -35,8 +36,9 @@ func _on_until_creation_timer_timeout() -> void:
 
 func _on_pride_boss_death() -> void:
 	self.AnimationPlayer2.play("DEATH")
+	ded.play()
 	
-	await self.AnimationPlayer2.animation_finished
+	await ded.finished
 	
 	queue_free()
 	

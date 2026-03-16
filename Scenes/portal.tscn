@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cy1tpokb4wdgh" path="res://Assets/PortalSprites.png" id="1_j20fm"]
 [ext_resource type="Script" uid="uid://bro8syh4pt3wo" path="res://Scripts/portal.gd" id="1_oi2tk"]
+[ext_resource type="AudioStream" uid="uid://bddb7jxu4guc5" path="res://Audio/SFX/tp.mp3" id="3_dashy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi2tk"]
 radius = 21.095022
@@ -65,5 +66,9 @@ root_node = NodePath("../Sprite2D")
 libraries/ = SubResource("AnimationLibrary_cqy4h")
 autoplay = &"portal_rotation"
 speed_scale = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1184178629]
+stream = ExtResource("3_dashy")
+volume_db = -3.545
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

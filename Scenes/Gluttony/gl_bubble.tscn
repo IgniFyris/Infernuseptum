@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1sdtov3y74tq" path="res://Scripts/Gluttony/gl_bubble.gd" id="1_6acq1"]
 [ext_resource type="Texture2D" uid="uid://65u18gm5tahk" path="res://Assets/Gluttony/GLBubble.png" id="1_yqy03"]
+[ext_resource type="AudioStream" uid="uid://dtgt3x7ulf2e" path="res://Audio/SFX/soundreality-pop-423717.mp3" id="3_5akgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6acq1"]
 size = Vector2(16, 16)
@@ -164,6 +165,10 @@ one_shot = true
 [node name="UntilReformTimer" type="Timer" parent="." unique_id=333548739]
 wait_time = 1.5
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=466163251]
+stream = ExtResource("3_5akgq")
+volume_db = -7.373
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yuournaq5mwk" path="res://Scripts/Pride/star.gd" id="1_0ivr7"]
 [ext_resource type="Texture2D" uid="uid://cg8y444ou5r33" path="res://Assets/Pride/PrideStar.png" id="2_8w4ko"]
+[ext_resource type="AudioStream" uid="uid://bvbhdcj1bdcsb" path="res://Audio/SFX/playerhurt.mp3" id="3_8w4ko"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8v0r"]
 radius = 34.0147
@@ -15,5 +16,8 @@ shape = SubResource("CircleShape2D_l8v0r")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1238953187]
 scale = Vector2(3.1875, 3.1875)
 texture = ExtResource("2_8w4ko")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531777660]
+stream = ExtResource("3_8w4ko")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

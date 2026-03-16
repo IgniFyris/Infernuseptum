@@ -28,6 +28,7 @@ signal PlayerDeath
 @export var WPlayerAnim : AnimationPlayer
 @export var FlashAnim : AnimationPlayer
 
+@onready var laugh = $AudioStreamPlayer2D
 
 var speed_multipilier = 30
 var direction = 0
@@ -123,6 +124,7 @@ func _on_change_color_timer_timeout() -> void:
 func _on_bait_cutscene_done() -> void:
 	BossStart.emit()
 	FlashAnim.play("flash")
+	laugh.play()
 	
 	await FlashAnim.animation_finished
 	

@@ -10,6 +10,7 @@ class_name SPlayer
 @onready var SlothBorder = $Camera2D/CanvasLayer/TextureRect
 
 @onready var Camera = $Camera2D
+@onready var Sigh = get_parent().get_node("AudioStreamPlayer2D")
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0

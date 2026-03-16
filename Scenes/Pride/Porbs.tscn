@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://q8mgcwmktuky" path="res://Scripts/Pride/porbs.gd" id="1_8gw27"]
 [ext_resource type="Texture2D" uid="uid://uke4b1wsl5jo" path="res://Assets/Pride/POrbs.png" id="1_don0b"]
+[ext_resource type="AudioStream" uid="uid://dm8qkl3cweajg" path="res://Audio/SFX/freesound_community-one_beep-99630.mp3" id="3_vlo77"]
+[ext_resource type="AudioStream" uid="uid://bjltc3nln78pu" path="res://Audio/SFX/freesound_community-hurt_c_08-102842.mp3" id="4_lqe0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8gw27"]
 radius = 16.03122
@@ -68,6 +70,12 @@ one_shot = true
 
 [node name="UntilHide" type="Timer" parent="." unique_id=1574569415]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1864833753]
+stream = ExtResource("3_vlo77")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=1115367818]
+stream = ExtResource("4_lqe0m")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="UntilShow" to="." method="_on_until_show_timeout"]

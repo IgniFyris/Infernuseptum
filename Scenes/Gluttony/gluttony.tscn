@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cw70d6la8oxy3" path="res://Assets/Gluttony/GLBG4.png" id="4_hxq8n"]
 [ext_resource type="PackedScene" uid="uid://blojlmag8ujmm" path="res://Scenes/portal.tscn" id="5_hxq8n"]
 [ext_resource type="Script" uid="uid://p56u3eslirmi" path="res://Scripts/Gluttony/acid.gd" id="6_syk3q"]
+[ext_resource type="AudioStream" uid="uid://dhc4em81uhtr7" path="res://Audio/SFX/freesound_community-acid-bubbling-105397.mp3" id="8_10idl"]
 [ext_resource type="PackedScene" uid="uid://dv1f2445bipoi" path="res://Scenes/Gluttony/glmove_plats_up.tscn" id="9_hxq8n"]
 [ext_resource type="PackedScene" uid="uid://b8jvr1s4p8l81" path="res://Scenes/Gluttony/glmove_plats_side.tscn" id="10_02bej"]
 [ext_resource type="PackedScene" uid="uid://cu41n0y3n0w24" path="res://Scenes/Gluttony/gl_bubble.tscn" id="11_tb7xf"]
@@ -212,6 +213,9 @@ shape = SubResource("RectangleShape2D_hxq8n")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelBlocks/Area2D" unique_id=2104658499]
 position = Vector2(519.5, 347)
 shape = SubResource("RectangleShape2D_hxq8n")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="LevelBlocks/Area2D" unique_id=1145316959]
+stream = ExtResource("8_10idl")
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("3_quo23")]
 position = Vector2(41, 553)

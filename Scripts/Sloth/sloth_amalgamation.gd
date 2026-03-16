@@ -2,6 +2,8 @@ extends Area2D
 
 var DeathScene = "uid://br7ao02pl5e7w"
 
+@onready var Goop = $AudioStreamPlayer2D
+
 func _ready() -> void:
 	create_tween().tween_property(self, "position:y", 0.0, 30)
 
@@ -10,4 +12,6 @@ func _on_body_entered(body: Node2D) -> void:
 		body.dead = true
 		body.PlayerAnim.stop()
 		body.PlayerAnim.play("death")
+		Goop.play()
+		await Goop.finished
 		SceneLoader.load_scene(DeathScene)

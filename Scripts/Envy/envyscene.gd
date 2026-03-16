@@ -8,6 +8,8 @@ extends Node2D
 
 @export var EyeOpenAnim : AnimationPlayer
 
+@onready var Beep = $dundun
+
 var rng = RandomNumberGenerator.new()
 
 var TimeUntilOpen = rng.randf_range(4, 7)
@@ -23,8 +25,8 @@ func _ready() -> void:
 	BGC.visible = true
 	BGH.visible = false
 	BGO.visible = false
-	TimeUntilOpenTimer.wait_time = TimeUntilOpen
-	print(TimeUntilOpen)
+	TimeUntilOpenTimer.wait_time = 6.8
+	
 	TimeUntilOpenTimer.start()
 
 func _on_time_until_close_timer_timeout() -> void:
@@ -41,6 +43,7 @@ func _on_time_until_close_timer_timeout() -> void:
 
 func _on_time_until_open_timer_timeout() -> void:
 	EyeOpenAnim.play("open")
+	Beep.play()
 	
 	await EyeOpenAnim.animation_finished
 	

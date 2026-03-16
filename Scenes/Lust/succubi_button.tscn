@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ou72qxowpyj" path="res://Assets/Lust/LPushButton.png" id="1_nqmv6"]
 [ext_resource type="Texture2D" uid="uid://bn5ppg27sqxq4" path="res://Assets/Lust/LPushButtonH.png" id="2_ot7gm"]
 [ext_resource type="Script" uid="uid://b6is0sakdoxgr" path="res://Scripts/Lust/succubi_button.gd" id="3_ot7gm"]
+[ext_resource type="AudioStream" uid="uid://dm8qkl3cweajg" path="res://Audio/SFX/freesound_community-one_beep-99630.mp3" id="4_ibt4a"]
 
 [node name="SuccubiButton" type="TextureButton" unique_id=1387723434]
 offset_left = 4.0
@@ -18,5 +19,8 @@ script = ExtResource("3_ot7gm")
 [node name="SelfDestruct" type="Timer" parent="." unique_id=1873072058]
 wait_time = 5.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1980356878]
+stream = ExtResource("4_ibt4a")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

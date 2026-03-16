@@ -2,6 +2,8 @@ extends TextureButton
 
 @onready var SelfDestructTimer = $SelfDestruct
 
+@onready var LButton = $AudioStreamPlayer2D
+
 @export var DeathScene = "uid://br7ao02pl5e7w"
 
 func _ready() -> void:

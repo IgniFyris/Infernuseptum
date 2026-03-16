@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="11_71krb"]
 [ext_resource type="PackedScene" uid="uid://d02mukl7dpk5u" path="res://Scenes/Pride/opplayer.tscn" id="11_jm3iq"]
 [ext_resource type="PackedScene" uid="uid://csy172xncpjw7" path="res://Scenes/Pride/ppride_boss.tscn" id="12_shde1"]
+[ext_resource type="AudioStream" uid="uid://k518k45bmppb" path="res://Audio/SFX/freesound_community-wood-crack-1-105890.mp3" id="13_1ws8l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7d1c"]
 texture = ExtResource("3_1ws8l")
@@ -115,6 +116,10 @@ position = Vector2(630, 403)
 
 [node name="PRIDE_BOSS" parent="." unique_id=1119540425 instance=ExtResource("12_shde1")]
 position = Vector2(636, 171)
+final_scene = &"uid://blkawmegyxj4b"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PRIDE_BOSS" unique_id=461999678]
+stream = ExtResource("13_1ws8l")
 
 [connection signal="BossDeath" from="." to="Player" method="_on_pride_boss_death"]
 [connection signal="BossDeath" from="." to="PRIDE_BOSS" method="_on_pride_boss_death"]

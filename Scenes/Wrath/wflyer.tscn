@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dbh1ciyar5e1" path="res://Scripts/Wrath/wflyer.gd" id="1_erdg2"]
 [ext_resource type="Script" uid="uid://dhjh2yiuqu1mg" path="res://Scripts/Wrath/wrath_zone.gd" id="2_erdg2"]
 [ext_resource type="Script" uid="uid://rvgpmihfoamm" path="res://Scripts/Wrath/death_zone.gd" id="3_aofcq"]
+[ext_resource type="AudioStream" uid="uid://h3apnpq76y37" path="res://Audio/SFX/freesound_community-cig_extinguish-89851.mp3" id="5_aofcq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hs14w"]
 radius = 8.0
@@ -80,6 +81,9 @@ script = ExtResource("3_aofcq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1777855350]
 shape = SubResource("CapsuleShape2D_0l08q")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="DeathZone" unique_id=68381349]
+stream = ExtResource("5_aofcq")
 
 [node name="TimeUntilWrathAdded" type="Timer" parent="." unique_id=638323014]
 wait_time = 0.05

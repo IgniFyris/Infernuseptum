@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var Audio = $AudioStreamPlayer2D
+
 var SlothScene = "uid://dagyj4t8j84c4"
 var GreedScene = "uid://bv7herqgc7fnv"
 var LustScene = "uid://c725gkt87eq1a"
@@ -12,6 +14,7 @@ func _ready() -> void:
 	self.monitoring = true
 
 func _on_body_entered(body: Node2D) -> void:
+	Audio.play()
 	if body is SPlayer && SceneLoader.scene_path == SlothScene:
 		SceneLoader.load_scene(GreedScene)
 	elif body is GPlayer && SceneLoader.scene_path == GreedScene:

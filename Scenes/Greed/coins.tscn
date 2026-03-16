@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3vqtpep0imcj" path="res://Scripts/Greed/coins.gd" id="1_2knwc"]
 [ext_resource type="Texture2D" uid="uid://bibijckyjepj4" path="res://Assets/Greed/GCoins.png" id="1_8j644"]
+[ext_resource type="AudioStream" uid="uid://0rmyhul725j1" path="res://Audio/SFX/coin.mp3" id="3_npqsx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qlpb"]
 
@@ -63,5 +64,8 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_npqsx")
 autoplay = &"rotate"
 speed_scale = 3.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1081946242]
+stream = ExtResource("3_npqsx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
