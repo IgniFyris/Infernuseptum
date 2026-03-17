@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dgj4uajgn3ct8" path="res://Assets/Pride/ENDINGBG.png" id="2_7nvpv"]
 [ext_resource type="Texture2D" uid="uid://bjqo378ges8bj" path="res://Assets/Pride/BadEnding.png" id="2_ibbcu"]
 [ext_resource type="AudioStream" uid="uid://bfdug0j7ccqe1" path="res://Audio/Music/Tutorial.wav" id="4_ibbcu"]
+[ext_resource type="Texture2D" uid="uid://di2k5vue8fosn" path="res://Assets/Pride/BACKGROUNDS_20260316174540.png" id="6_yjd1x"]
 
 [node name="BadEnding" type="Node2D" unique_id=1305626840]
 script = ExtResource("1_bhtgw")
@@ -27,5 +28,12 @@ centered = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=108768714]
 stream = ExtResource("4_ibbcu")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1410433315]
+position = Vector2(156.44446, 88)
+scale = Vector2(0.7555555, 0.75555557)
+texture = ExtResource("6_yjd1x")
+centered = false
+offset = Vector2(0, 216.22)
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

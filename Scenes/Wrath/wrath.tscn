@@ -228,6 +228,7 @@ position = Vector2(30, 29)
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("6_j8hw3")]
 position = Vector2(83, 670)
+death_scene = &"uid://br7ao02pl5e7w"
 
 [node name="Crawlers" type="Node2D" parent="." unique_id=1121662260]
 
