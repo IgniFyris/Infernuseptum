@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dkd7smxss273l" path="res://Assets/Pride/PRIDE_5.png" id="7_hmu0s"]
 [ext_resource type="Texture2D" uid="uid://c45bict8ruiwj" path="res://Assets/Pride/PRIDE_6.png" id="8_ouyeh"]
 [ext_resource type="Texture2D" uid="uid://bdw40mbv2vyd" path="res://Assets/Pride/PRIDE_D.png" id="9_8om1t"]
-[ext_resource type="AudioStream" uid="uid://d0eyrfsumik7w" path="res://Audio/Music/GREED (1).wav" id="11_71krb"]
+[ext_resource type="AudioStream" uid="uid://fxe8irmpuaig" path="res://Audio/Music/7. PRIDE.wav" id="10_1ws8l"]
 [ext_resource type="PackedScene" uid="uid://d02mukl7dpk5u" path="res://Scenes/Pride/opplayer.tscn" id="11_jm3iq"]
 [ext_resource type="PackedScene" uid="uid://csy172xncpjw7" path="res://Scenes/Pride/ppride_boss.tscn" id="12_shde1"]
 [ext_resource type="AudioStream" uid="uid://k518k45bmppb" path="res://Audio/SFX/freesound_community-wood-crack-1-105890.mp3" id="13_1ws8l"]
@@ -109,7 +109,7 @@ centered = false
 [node name="Orbs" type="Node2D" parent="PrideLevel" unique_id=1131173155]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1692453430]
-stream = ExtResource("11_71krb")
+stream = ExtResource("10_1ws8l")
 
 [node name="Player" parent="." unique_id=1995535131 instance=ExtResource("11_jm3iq")]
 position = Vector2(630, 403)
