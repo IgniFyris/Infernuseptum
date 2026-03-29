@@ -6,6 +6,10 @@ and <b><a href="https://itch.io/devlogs"> Ember</a></b> Game Jams.
 
 <b> Playable on Browser: </b> https://ignifyris.itch.io/infernuseptum-demo
 
+## 🏅Attained Achievements
+<p><strong>1st Place in the "Audio" Category of the&nbsp;<a href="https://itch.io/jam/ember">Ember</a> Game Jam </strong><br></p>
+<p><strong>3rd Place in the <a href="https://campfire.hackclub.com/quezon-city">Campfire Quezon City</a> Game Jam</strong></p>
+
 ## ⚙️Tools and Acknowledgements
 <p>This game was developed by the following, using the indicated programs/tools:</p>
 <p></p>
